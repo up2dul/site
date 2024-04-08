@@ -3,18 +3,12 @@
 
 # Identify the package manager based on lock file presence
 if [ -f "pnpm-lock.yaml" ]; then
-  CL_CMD="pnpm commitlint"
   LS_CMD="pnpm lint-staged"
 elif [ -f "yarn.lock" ]; then
-  CL_CMD="yarn commitlint"
   LS_CMD="yarn lint-staged"
 else
-  CL_CMD="npm run commitlint"
   LS_CMD="npm run lint-staged"
 fi
-
-echo "🔎 Checking the commit message..."
-$CL_CMD || false
 
 echo "📝 Checking types, linting, and formatting before committing..."
 $LS_CMD ||
