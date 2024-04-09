@@ -8,17 +8,22 @@ export default {
       sans: ['Inter', 'sans-serif'],
       serif: ['Newsreader', 'serif'],
     },
-    textColor: {
-      main: 'rgb(var(--color-text-main) / <alpha-value>)',
+    colors: {
+      dark: {
+        100: '#171717',
+        50: '#5D5D5D',
+      },
+      light: {
+        100: '#F2F1EC',
+        50: '#DCD9CC',
+      },
+      transparent: 'transparent',
     },
-    backgroundColor: {
-      main: 'rgb(var(--color-bg-main) / <alpha-value>)',
-      muted: 'rgb(var(--color-bg-muted) / <alpha-value>)',
+    extend: {
+      screens: {
+        xs: '475px',
+      },
     },
-    borderColor: {
-      main: 'rgb(var(--color-border-main) / <alpha-value>)',
-    },
-    extend: {},
   },
   plugins: [],
 } satisfies Config;

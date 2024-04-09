@@ -3,29 +3,31 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --color-text-main: 23 23 23; /* #171717 */
-    --color-bg-main: 242 241 236; /* #F2F1EC */
-    --color-bg-muted: 234 233 225; /* #EAE9E1 */
-    --color-border-main: 23 23 23; /* #171717 */
-  }
-  html.dark {
-    --color-text-main: 242 241 236; /* #F2F1EC */
-    --color-bg-main: 23 23 23; /* #171717 */
-    --color-bg-muted: 36 36 36; /* #242424 */
-    --color-border-main: 242 241 236; /* #F2F1EC */
-  }
-
   html {
     @apply scroll-smooth;
   }
 
   body {
-    @apply font-sans;
+    @apply font-sans font-normal bg-light-100 text-dark-100;
+    @apply dark:bg-dark-100 dark:text-light-100;
+  }
+
+  main {
+    @apply px-5;
+  }
+
+  header {
+    @apply px-0;
+  }
+
+  main,
+  header {
+    @apply xs:px-10 sm:px-20 md:px-48 lg:px-60 xl:px-96;
   }
 
   a {
-    @apply font-medium underline decoration-dashed underline-offset-2 hover:decoration-solid;
+    @apply font-medium underline decoration-dashed underline-offset-4;
+    @apply hover:text-dark-50 hover:decoration-solid;
   }
 
   h1,
@@ -35,5 +37,9 @@
   h5,
   h6 {
     @apply font-serif font-medium;
+  }
+
+  p {
+    @apply text-light-50 dark:text-dark-50;
   }
 }
