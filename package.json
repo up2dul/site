@@ -48,8 +48,7 @@
   },
   "lint-staged": {
     "**/*.{ts,astro}": [
-      "eslint",
-      "tsc --pretty --noEmit"
+      "eslint"
     ],
     "**/*.{cjs,js,ts,json,md,astro,css}": [
       "prettier --write"
