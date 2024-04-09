@@ -12,6 +12,11 @@
     @apply dark:bg-dark-100 dark:text-light-100;
   }
 
+  *::selection {
+    @apply bg-dark-50 text-light-100;
+    @apply dark:bg-light-50 dark:text-dark-100;
+  }
+
   main {
     @apply px-5;
   }
@@ -27,7 +32,7 @@
 
   a {
     @apply font-medium underline decoration-dashed underline-offset-4;
-    @apply hover:text-dark-50 hover:decoration-solid;
+    @apply hover:text-dark-50 dark:hover:text-light-50 hover:decoration-solid;
   }
 
   h1,
@@ -40,6 +45,16 @@
   }
 
   p {
-    @apply text-light-50 dark:text-dark-50;
+    @apply text-dark-50 dark:text-light-50;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-lg;
   }
 }
