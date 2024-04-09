@@ -31,8 +31,8 @@
   }
 
   a {
-    @apply font-medium underline decoration-dashed underline-offset-4;
-    @apply hover:text-dark-50 dark:hover:text-light-50 hover:decoration-solid;
+    @apply font-medium text-dark-100 underline decoration-dashed underline-offset-4;
+    @apply dark:text-light-100 hover:text-dark-50 dark:hover:text-light-50 hover:decoration-solid;
   }
 
   h1,
