@@ -1,3 +1,4 @@
+import Link from './Link.astro';
 import ThemeButton from './ThemeButton.astro';
 
-export { ThemeButton };
+export { Link, ThemeButton };

@@ -1,0 +1,18 @@
+---
+export interface Props {
+  href: string;
+  isNewTab?: boolean;
+  ariaLabel?: string;
+}
+
+const { href, isNewTab = false, ariaLabel = 'Link' } = Astro.props as Props;
+---
+
+<a
+  href={href}
+  target={isNewTab ? '_blank' : '_self'}
+  rel="noopener noreferrer"
+  aria-label={ariaLabel}
+>
+  <slot />
+</a>
