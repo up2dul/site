@@ -1,16 +1,46 @@
 ---
+import { Link } from '~/components/common';
 import { BaseLayout } from '~/components/layout';
 ---
 
 <BaseLayout
   title="Abdul Malik"
-  subtitle="/Frən(t) ˈɛnd wɛb dɪˈvɛləpə/"
+  subtitle="/Frən(t) ˈɛnd wɛb dɪˈvɛləpə/."
   seo={{ title: 'Home' }}
 >
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, soluta! Quae
-    nobis quos iste incidunt facilis assumenda magni, ducimus voluptates
-    cupiditate, placeat fuga. Magnam praesentium, perspiciatis maiores voluptate
-    labore culpa.
-  </p>
+  <section class="flex flex-col gap-5">
+    <p>
+      👋 Hello fellas, welcome to my digital garden ツ. I am Abdul, a software
+      developer based in Bandung, Indonesia 🇮🇩, who specializes in Frontend Web
+      Development. I am currently an active informatics student, full-time
+      worker as a Frontend Web Developerat at a company in Bandung , and a
+      part-time worker as an External Code Reviewer at
+      <Link href="https://dicoding.com" ariaLabel="Dicoding Indonesia" isNewTab>
+        Dicoding Indonesia
+      </Link>.
+    </p>
+
+    <p>
+      🎨 I focus on crafting user-friendly, accessible, and visually stunning
+      websites. I casually work with the React ecosystem, mostly my tech stack
+      is React, Vite/Next.js, Tailwind, and TypeScript. Currently, I learning
+      about Vue too.
+    </p>
+
+    <p>
+      ✍️ Recently, I've embarked on a journey into the world of writing. It's a
+      new things that I love to do, and I am excited to share my writings. Check
+      this out <Link href="/writings" ariaLabel="Writings page">here!</Link>.
+    </p>
+
+    <p>
+      🤝 That’s it, if you're curious to learn more about my professional
+      journey, check out
+      <Link href="https://read.cv/up2dul" ariaLabel="My CV/Resume" isNewTab>
+        my CV
+      </Link> for a deeper dive into my expertise and experience. And if you are
+      interested in collaborating or getting in touch with me, just reach me through
+      my email or social media accounts below.
+    </p>
+  </section>
 </BaseLayout>
