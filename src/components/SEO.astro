@@ -1,5 +1,5 @@
 ---
-import data from '~/lib/site-data';
+import { site } from '~/lib/data';
 
 export interface Props {
   title: string;
@@ -9,10 +9,10 @@ export interface Props {
 
 const {
   title,
-  description = data.description,
-  keywords = data.keywords,
+  description = site.description,
+  keywords = site.keywords,
 } = Astro.props as Props;
-const { siteName, siteUrl } = data;
+const { siteName, siteUrl } = site;
 ---
 
 <meta charset="utf-8" />
