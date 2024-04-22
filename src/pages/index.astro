@@ -1,11 +1,12 @@
 ---
 import { Link } from '~/components/common';
 import { BaseLayout } from '~/components/layout';
+import { contacts } from '~/lib/data';
 ---
 
 <BaseLayout
   title="Abdul Malik"
-  subtitle="/Frən(t) ˈɛnd wɛb dɪˈvɛləpə/."
+  subtitle="(/Frən(t) ˈɛnd wɛb dɪˈvɛləpə/)."
   seo={{ title: 'Home' }}
 >
   <section class="flex flex-col gap-5">
@@ -33,14 +34,18 @@ import { BaseLayout } from '~/components/layout';
       this out <Link href="/writings" ariaLabel="Writings page">here!</Link>.
     </p>
 
-    <p>
-      🤝 That’s it, if you're curious to learn more about my professional
-      journey, check out
-      <Link href="https://read.cv/up2dul" ariaLabel="My CV/Resume" isNewTab>
-        my CV
-      </Link> for a deeper dive into my expertise and experience. And if you are
-      interested in collaborating or getting in touch with me, just reach me through
-      my email or social media accounts below.
-    </p>
+    <p>🌐 That's it, let's get in touch with me through my links below.</p>
+
+    <ul class="text-sm grid grid-cols-2 lg:grid-cols-3 gap-3">
+      {
+        contacts.map((contact) => (
+          <li>
+            <Link href={contact.url} ariaLabel={contact.name} isNewTab>
+              {contact.name}
+            </Link>
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </BaseLayout>
