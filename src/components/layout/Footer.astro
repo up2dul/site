@@ -1,0 +1,58 @@
+---
+import { Link } from '~/components/common';
+
+const year = new Date().getFullYear().toString().replace('0', 'k');
+---
+
+<footer>
+  <div
+    class="px-5 pt-5 xs:px-2 pb-14 text-sm flex justify-between border-t border-dashed"
+  >
+    <ul>
+      <li>
+        <p>© {year}</p>
+      </li>
+      <li>
+        <p>
+          Crafted w/
+          <Link href="https://astro.build" ariaLabel="Astro Website" isNewTab>
+            Astro 🚀
+          </Link>
+        </p>
+      </li>
+      <li>
+        <p>
+          Shipped on
+          <Link href="https://vercel.com" ariaLabel="Vercel Website" isNewTab>
+            Vercel ▲
+          </Link>
+        </p>
+      </li>
+    </ul>
+
+    <ul>
+      <li>
+        <Link
+          href="https://github.com/up2dul/site"
+          ariaLabel="Source code on GitHub"
+          isNewTab
+        >
+          Source Code
+        </Link>
+      </li>
+      <li>
+        <Link href="/feed.xml" ariaLabel="RSS feed">RSS</Link>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  ul {
+    @apply flex flex-col gap-2;
+
+    &:nth-child(2) {
+      @apply text-right;
+    }
+  }
+</style>

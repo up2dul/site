@@ -1,16 +1,51 @@
 ---
+import { Link } from '~/components/common';
 import { BaseLayout } from '~/components/layout';
+import { contacts } from '~/lib/data';
 ---
 
 <BaseLayout
   title="Abdul Malik"
-  subtitle="/Frən(t) ˈɛnd wɛb dɪˈvɛləpə/"
+  subtitle="(/Frən(t) ˈɛnd wɛb dɪˈvɛləpə/)."
   seo={{ title: 'Home' }}
 >
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, soluta! Quae
-    nobis quos iste incidunt facilis assumenda magni, ducimus voluptates
-    cupiditate, placeat fuga. Magnam praesentium, perspiciatis maiores voluptate
-    labore culpa.
-  </p>
+  <section class="flex flex-col gap-5">
+    <p>
+      👋 Hello fellas, welcome to my digital garden ツ. I am Abdul, a software
+      developer based in Bandung, Indonesia 🇮🇩, who specializes in Frontend Web
+      Development. I am currently an active informatics student, full-time
+      worker as a Frontend Web Developerat at a company in Bandung , and a
+      part-time worker as an External Code Reviewer at
+      <Link href="https://dicoding.com" ariaLabel="Dicoding Indonesia" isNewTab>
+        Dicoding Indonesia
+      </Link>.
+    </p>
+
+    <p>
+      🎨 I focus on crafting user-friendly, accessible, and visually stunning
+      websites. I casually work with the React ecosystem, mostly my tech stack
+      is React, Vite/Next.js, Tailwind, and TypeScript. Currently, I learning
+      about Vue too.
+    </p>
+
+    <p>
+      ✍️ Recently, I've embarked on a journey into the world of writing. It's a
+      new things that I love to do, and I am excited to share my writings. Check
+      this out <Link href="/writings" ariaLabel="Writings page">here!</Link>.
+    </p>
+
+    <p>🌐 That's it, let's get in touch with me through my links below.</p>
+
+    <ul class="text-sm grid grid-cols-2 lg:grid-cols-3 gap-3">
+      {
+        contacts.map((contact) => (
+          <li>
+            <Link href={contact.url} ariaLabel={contact.name} isNewTab>
+              {contact.name}
+            </Link>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </BaseLayout>
