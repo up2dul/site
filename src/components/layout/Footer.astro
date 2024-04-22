@@ -5,13 +5,20 @@ const year = new Date().getFullYear().toString().replace('0', 'k');
 ---
 
 <footer>
-  <div class="pt-5 pb-12 text-sm flex justify-between border-t border-dashed">
+  <div
+    class="px-5 pt-5 xs:px-2 pb-14 text-sm flex justify-between border-t border-dashed"
+  >
     <ul>
       <li>
-        <p>Crafted w/ Astro.</p>
+        <p>© {year}</p>
       </li>
       <li>
-        <p>© {year}.</p>
+        <p>
+          Crafted w/
+          <Link href="https://astro.build" ariaLabel="Astro Website" isNewTab>
+            Astro 🚀
+          </Link>
+        </p>
       </li>
     </ul>
 
@@ -20,8 +27,10 @@ const year = new Date().getFullYear().toString().replace('0', 'k');
         <Link
           href="https://github.com/up2dul/site"
           ariaLabel="Source code on GitHub"
-          isNewTab>Source on GitHub</Link
+          isNewTab
         >
+          Source Code
+        </Link>
       </li>
       <li>
         <Link href="/feed.xml" ariaLabel="RSS feed">RSS</Link>
