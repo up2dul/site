@@ -1,0 +1,41 @@
+---
+import { Link } from '~/components/common';
+
+const year = new Date().getFullYear().toString().replace('0', 'k');
+---
+
+<footer>
+  <div class="pt-5 pb-12 text-sm flex justify-between border-t border-dashed">
+    <ul>
+      <li>
+        <p>Crafted w/ Astro.</p>
+      </li>
+      <li>
+        <p>© {year}.</p>
+      </li>
+    </ul>
+
+    <ul>
+      <li>
+        <Link
+          href="https://github.com/up2dul/site"
+          ariaLabel="Source code on GitHub"
+          isNewTab>Source on GitHub</Link
+        >
+      </li>
+      <li>
+        <Link href="/feed.xml" ariaLabel="RSS feed">RSS</Link>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  ul {
+    @apply flex flex-col gap-2;
+
+    &:nth-child(2) {
+      @apply text-right;
+    }
+  }
+</style>

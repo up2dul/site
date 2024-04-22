@@ -5,7 +5,7 @@ import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 
 import SEO, { type Props as SEOProps } from '~/components/SEO.astro';
-import { Header } from '~/components/layout';
+import { Header, Footer } from '~/components/layout';
 import '~/index.css';
 
 export interface Props {
@@ -30,5 +30,7 @@ const { title, subtitle, seo } = Astro.props as Props;
 
       <slot />
     </main>
+
+    <Footer />
   </body>
 </html>

@@ -21,17 +21,19 @@
     @apply px-5;
   }
 
-  header {
+  header,
+  footer {
     @apply px-0;
   }
 
   main,
-  header {
+  header,
+  footer {
     @apply xs:px-10 sm:px-20 md:px-48 lg:px-60 xl:px-96;
   }
 
   a {
-    @apply font-medium text-dark-100 underline decoration-dashed underline-offset-4;
+    @apply text-dark-100 underline decoration-dashed underline-offset-4;
     @apply dark:text-light-100 hover:text-dark-50 dark:hover:text-light-50 hover:decoration-solid;
   }
 
