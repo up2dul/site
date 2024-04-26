@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 import { Link } from '~/components/common';
 
 const year = new Date().getFullYear().toString().replace('0', 'k');
@@ -16,15 +18,19 @@ const year = new Date().getFullYear().toString().replace('0', 'k');
         <p>
           Crafted w/
           <Link href="https://astro.build" ariaLabel="Astro Website" isNewTab>
-            Astro 🚀
+            <Icon name="tabler:brand-astro" />
           </Link>
         </p>
       </li>
       <li>
         <p>
           Shipped on
-          <Link href="https://vercel.com" ariaLabel="Vercel Website" isNewTab>
-            Vercel ▲
+          <Link
+            href="https://pages.cloudflare.com"
+            ariaLabel="Cloudflare Website"
+            isNewTab
+          >
+            <Icon name="tabler:brand-cloudflare" />
           </Link>
         </p>
       </li>
@@ -37,11 +43,13 @@ const year = new Date().getFullYear().toString().replace('0', 'k');
           ariaLabel="Source code on GitHub"
           isNewTab
         >
-          Source Code
+          <Icon name="tabler:code" /> Source Code
         </Link>
       </li>
       <li>
-        <Link href="/feed.xml" ariaLabel="RSS feed">RSS</Link>
+        <Link href="/feed.xml" ariaLabel="RSS feed">
+          <Icon name="tabler:rss" /> RSS
+        </Link>
       </li>
     </ul>
   </div>
