@@ -1,5 +1,15 @@
-<button id="theme-button" type="button" aria-label="Toggle theme color">
-  theme
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<button
+  id="theme-button"
+  type="button"
+  aria-label="Toggle theme color"
+  class="py-1 px-2"
+>
+  <Icon id="sun-icon" name="tabler:sun" />
+  <Icon id="moon-icon" name="tabler:moon" />
 </button>
 
 <script>
