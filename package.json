@@ -12,13 +12,13 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro build",
+    "check": "astro check",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "format": "prettier --write './**/*.{cjs,js,ts,json,md,astro}'",
-    "check-types": "tsc --pretty --noEmit",
     "prepare": "husky",
     "commitlint": "commitlint --edit"
   },
