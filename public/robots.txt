@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://up2dul.dev/sitemap-index.xml
