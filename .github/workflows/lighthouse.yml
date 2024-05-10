@@ -1,0 +1,35 @@
+name: Lighthouse CI
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      
+      - uses: actions/checkout@v4
+      - name: Wait for CF Pages
+        id: cf-pages
+        uses: WalshyDev/cf-pages-await@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN  }}
+          accountId: 'ecd17b79b9df5aa2ee0742371302caf3'
+          project: 'site'
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v4
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          urls: |
+            ${{ steps.cf-pages.outputs.url }}
+            ${{ steps.cf-pages.outputs.url }}/writings
+          uploadArtifacts: true # save results as an action artifacts
+          temporaryPublicStorage: true # upload lighthouse audits to google temporary storage
+          configPath: ./.lighthouserc.cjs
