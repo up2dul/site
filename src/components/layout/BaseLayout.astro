@@ -5,6 +5,7 @@ import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 
 import SEO, { type Props as SEOProps } from '~/components/SEO.astro';
+import { SkipToContent } from '~/components/common';
 import { Header, Footer } from '~/components/layout';
 import '~/index.css';
 
@@ -21,10 +22,12 @@ const { title, subtitle, seo } = Astro.props as Props;
     <SEO {...seo} />
   </head>
   <body>
+    <SkipToContent />
+
     <Header />
 
     <!-- 93px is the Header height -->
-    <main class="mt-[93px] pb-24 pt-12">
+    <main id="main" class="mt-[93px] pb-24 pt-12">
       <h1>{title}</h1>
       <p class="text-sm mt-2 mb-5">{subtitle}</p>
 

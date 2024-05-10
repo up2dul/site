@@ -1,4 +1,5 @@
 import Link from './Link.astro';
+import SkipToContent from './SkipToContent.astro';
 import ThemeButton from './ThemeButton.astro';
 
-export { Link, ThemeButton };
+export { Link, SkipToContent, ThemeButton };
