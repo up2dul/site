@@ -27,6 +27,9 @@ jobs:
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v11
         with:
-          urls: ${{ steps.cf-pages.outputs.url }}
+          urls: |
+            ${{ steps.cf-pages.outputs.url }}
+            ${{ steps.cf-pages.outputs.url }}/writings
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse audits to google temporary storage
+          configPath: ./.lighthouserc.cjs
