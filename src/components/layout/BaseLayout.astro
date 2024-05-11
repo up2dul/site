@@ -11,10 +11,9 @@ import '~/index.css';
 
 export interface Props {
   title: string;
-  subtitle: string;
   seo: SEOProps;
 }
-const { title, subtitle, seo } = Astro.props as Props;
+const { title, seo } = Astro.props as Props;
 ---
 
 <html lang="en">
@@ -29,9 +28,13 @@ const { title, subtitle, seo } = Astro.props as Props;
     <!-- 93px is the Header height -->
     <main id="main" class="mt-[93px] pb-24 pt-12">
       <h1>{title}</h1>
-      <p class="text-sm mt-2 mb-5">{subtitle}</p>
+      <section class="mb-8 mt-2 text-sm">
+        <slot name="subtitle" />
+      </section>
 
-      <slot />
+      <section class="flex flex-col gap-5">
+        <slot name="contents" />
+      </section>
     </main>
 
     <Footer />
