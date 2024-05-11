@@ -6,12 +6,10 @@ import { BaseLayout } from '~/components/layout';
 import { contacts } from '~/lib/data';
 ---
 
-<BaseLayout
-  title="Abdul Malik"
-  subtitle="(/Frən(t) ˈɛnd wɛb dɪˈvɛləpə/)."
-  seo={{ title: 'Home' }}
->
-  <section class="flex flex-col gap-5">
+<BaseLayout title="Abdul Malik" seo={{ title: 'Home' }}>
+  <p slot="subtitle">(/Frən(t) ˈɛnd wɛb dɪ'vɛləpə/).</p>
+
+  <Fragment slot="contents">
     <p>
       Hello fellas 👋, welcome to my digital garden ツ. I am Abdul, a software
       developer based in Bandung, Indonesia 🇮🇩, who specializes in Frontend Web
@@ -47,7 +45,7 @@ import { contacts } from '~/lib/data';
 
     <p>That's it, let's get in touch with me through my links below.</p>
 
-    <ul class="text-sm grid grid-cols-2 lg:grid-cols-3 gap-3">
+    <ul class="grid grid-cols-2 gap-3 text-sm lg:grid-cols-3">
       {
         contacts.map((contact) => (
           <li>
@@ -59,5 +57,5 @@ import { contacts } from '~/lib/data';
         ))
       }
     </ul>
-  </section>
+  </Fragment>
 </BaseLayout>
