@@ -1,6 +1,11 @@
 ---
+import { getCollection } from 'astro:content';
+
 import { BaseLayout } from '~/components/layout';
 import { ContentCard, Link } from '~/components/common';
+import { generateReadingTime } from '~/lib/utils';
+
+const allWritings = await getCollection('writings');
 ---
 
 <BaseLayout title="Writings" seo={{ title: 'Writings' }}>
@@ -12,31 +17,24 @@ import { ContentCard, Link } from '~/components/common';
       ~<Link
         href="https://addyosmani.com"
         aria-label="Addy Osmani website"
-        isNewTab>Addy Osmani</Link>
+        isNewTab
+      >
+        Addy Osmani
+      </Link>
     </p>
   </Fragment>
 
   <Fragment slot="contents">
-    <ContentCard
-      href="/writings/slug"
-      title="The title will be here"
-      subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Subtitle here."
-      createdAt="10 May 2024"
-      timeToRead={1}
-    />
-    <ContentCard
-      href="/writings/slug"
-      title="The title will be here (2)"
-      subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Subtitle here."
-      createdAt="4 May 2024"
-      timeToRead={2}
-    />
-    <ContentCard
-      href="/writings/slug"
-      title="The title will be here (3)"
-      subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Subtitle here."
-      createdAt="22 April 2024"
-      timeToRead={5}
-    />
+    {
+      allWritings.map((writing) => (
+        <ContentCard
+          href={`/writings/${writing.slug}`}
+          title={writing.data.title}
+          subtitle={writing.data.subtitle}
+          createdAt={writing.data.createdAt}
+          readingTime={generateReadingTime(writing.body)}
+        />
+      ))
+    }
   </Fragment>
 </BaseLayout>
