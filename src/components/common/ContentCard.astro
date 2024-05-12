@@ -1,0 +1,36 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import { formatDate } from '~/lib/utils';
+
+interface Props {
+  href: string;
+  title: string;
+  subtitle: string;
+  createdAt: Date;
+  readingTime?: number;
+}
+const { href, title, subtitle, createdAt, readingTime } = Astro.props as Props;
+
+const ariaLabel = `Card for ${title}`;
+const formattedCreatedAt = formatDate(createdAt);
+---
+
+<article aria-label={ariaLabel}>
+  <a href={href} class="p-0">
+    <h2>{title}</h2>
+  </a>
+
+  <p class="mt-1 text-sm">{subtitle}</p>
+
+  <div class="mt-2 flex items-center gap-8 text-xs">
+    <p><Icon name="tabler:calendar" /> {formattedCreatedAt}</p>
+    {
+      readingTime && (
+        <p>
+          <Icon name="tabler:clock" /> {readingTime} min read
+        </p>
+      )
+    }
+  </div>
+</article>
