@@ -1,5 +1,6 @@
 import BaseLayout from './BaseLayout.astro';
-import Header from './Header.astro';
+import ContentLayout from './ContentLayout.astro';
 import Footer from './Footer.astro';
+import Header from './Header.astro';
 
-export { BaseLayout, Header, Footer };
+export { BaseLayout, ContentLayout, Footer, Header };

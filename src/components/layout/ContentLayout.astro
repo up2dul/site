@@ -1,0 +1,34 @@
+---
+import SEO from '~/components/SEO.astro';
+import { SkipToContent } from '~/components/common';
+import { Header, Footer } from '~/components/layout';
+import { generateReadingTime } from '~/lib/utils';
+import '~/index.css';
+
+const {
+  frontmatter: { body, data },
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <SEO title={data.title} description={data.subtitle} />
+  </head>
+
+  <body>
+    <SkipToContent />
+
+    <Header />
+
+    <!-- 93px is the Header height -->
+    <main id="main" class="mt-[93px] pb-24 pt-12">
+      <h1>{data.title}</h1>
+      <p>{data.subtitle}</p>
+      <p>{generateReadingTime(body)} min read</p>
+
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>
