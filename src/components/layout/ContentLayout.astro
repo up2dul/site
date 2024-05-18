@@ -1,0 +1,27 @@
+---
+import { BaseLayout } from '~/components/layout';
+import { generateReadingTime } from '~/lib/utils';
+
+const {
+  frontmatter: { body, data },
+} = Astro.props;
+---
+
+<BaseLayout
+  title={data.title}
+  seo={{
+    title: data.title,
+    description: `${data.title}. ${data.subtitle}`,
+    keywords: data.tags,
+  }}
+  layoutType="content"
+>
+  <Fragment slot="subtitle">
+    <p>{data.subtitle}</p>
+    <p>{generateReadingTime(body)} min read</p>
+  </Fragment>
+
+  <Fragment slot="contents">
+    <slot />
+  </Fragment>
+</BaseLayout>

@@ -1,14 +1,16 @@
 ---
 import SEO, { type Props as SEOProps } from '~/components/SEO.astro';
-import { SkipToContent } from '~/components/common';
+import { SkipToContent, WIP } from '~/components/common';
 import { Header, Footer } from '~/components/layout';
+import { cn } from '~/lib/utils';
 import '~/index.css';
 
 export interface Props {
   title: string;
   seo: SEOProps;
+  layoutType?: 'base' | 'content';
 }
-const { title, seo } = Astro.props as Props;
+const { title, seo, layoutType = 'base' } = Astro.props as Props;
 ---
 
 <html lang="en">
@@ -23,7 +25,8 @@ const { title, seo } = Astro.props as Props;
     <!-- 93px is the Header height -->
     <main id="main" class="mt-[93px] pb-24 pt-12">
       <h1>{title}</h1>
-      <section class="mb-8 mt-2 text-sm">
+
+      <section class={cn(['mb-8 mt-2', layoutType === 'base' && 'text-sm'])}>
         <slot name="subtitle" />
       </section>
 
@@ -33,5 +36,7 @@ const { title, seo } = Astro.props as Props;
     </main>
 
     <Footer />
+
+    <WIP />
   </body>
 </html>
