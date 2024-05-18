@@ -1,3 +1,16 @@
+import clsx, { type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+/**
+ * Combines multiple class values into a single string using Tailwind CSS class merging.
+ *
+ * @param {ClassValue[]} inputs - An array of class values to be merged.
+ * @return {string} The merged class string.
+ */
+function cn(...inputs: ClassValue[]): string {
+  return twMerge(clsx(inputs));
+}
+
 /**
  * Formats a given date into a human-readable string representation.
  *
@@ -34,4 +47,4 @@ function generateReadingTime(markdownBody: string): number {
   return Math.ceil(wordCount / WORDS_PER_MINUTE);
 }
 
-export { formatDate, generateReadingTime };
+export { cn, formatDate, generateReadingTime };
