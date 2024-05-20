@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import '@fontsource/newsreader/400.css';
 import '@fontsource/newsreader/500.css';
 import '@fontsource/inter/400.css';
@@ -35,3 +36,4 @@ const { siteName, siteUrl } = site;
 <meta name="generator" content={Astro.generator} />
 <title>{`${title} | ${siteName}`}</title>
 <meta name="description" content={description} />
+<ViewTransitions />
