@@ -3,6 +3,10 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - '.gitignore'
+      - '.prettierignore'
+      - 'README.md'
 
 jobs:
   lighthouse:
