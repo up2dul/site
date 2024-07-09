@@ -32,6 +32,10 @@
     @apply xs:px-10 sm:px-20 md:px-48 lg:px-60 xl:px-96;
   }
 
+  pre {
+    @apply p-4;
+  }
+
   a {
     @apply px-1;
     @apply text-dark-100 underline decoration-dashed underline-offset-4 transition;
