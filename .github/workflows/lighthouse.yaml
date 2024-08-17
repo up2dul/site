@@ -1,39 +1,39 @@
-name: Lighthouse CI
+name: 🔬 Preview and Audit using Lighthouse
 on:
   pull_request:
     branches:
       - main
     paths-ignore:
+      - '.commitlintrc.cjs'
+      - '.eslintrc.cjs'
       - '.gitignore'
       - '.prettierignore'
+      - '.prettierrc.cjs'
       - 'README.md'
 
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
     steps:
-      - name: Checkout
+      - name: 🛎️ Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      
-      - uses: actions/checkout@v4
-      - name: Wait for CF Pages
-        id: cf-pages
+      # Wait for CF Pages
+      - name: 🌎 Wait for CF Pages
         uses: WalshyDev/cf-pages-await@v1
+        id: cf-pages
         with:
           apiToken: ${{ secrets.CF_API_TOKEN  }}
-          accountId: 'ecd17b79b9df5aa2ee0742371302caf3'
-          project: 'site'
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          project: 'qparser'
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: actions/checkout@v4
-      - name: Audit URLs using Lighthouse
+      # Audit URLs using Lighthouse
+      - name: 🔬 Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v11
         with:
-          urls: |
-            ${{ steps.cf-pages.outputs.url }}
-            ${{ steps.cf-pages.outputs.url }}/writings
+          urls: ${{ steps.cf-pages.outputs.url }}
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse audits to google temporary storage
           configPath: ./.lighthouserc.cjs
