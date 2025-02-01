@@ -1,18 +1,21 @@
 ---
+import { render } from 'astro:content';
+import { getEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
 
 import { ContentLayout } from '~/components/layout';
+import type { Writing } from '~/lib/types';
 
 export async function getStaticPaths() {
   const writingEntries = await getCollection('writings');
   return writingEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
+    params: { slug: entry.id },
+    props: entry,
   }));
 }
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const entry = (await getEntry('writings', Astro.params.slug)) as Writing;
+const { Content } = await render(entry);
 ---
 
 <ContentLayout frontmatter={entry} Content={Content}>
