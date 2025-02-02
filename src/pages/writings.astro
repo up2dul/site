@@ -28,7 +28,7 @@ const allWritings = await getCollection('writings');
     {
       allWritings.map((writing) => (
         <ContentCard
-          href={`/writings/${writing.slug}`}
+          href={`/writings/${writing.id}`}
           title={writing.data.title}
           subtitle={writing.data.subtitle}
           createdAt={writing.data.createdAt}

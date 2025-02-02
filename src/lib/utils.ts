@@ -31,7 +31,7 @@ function formatDate(inputDate: Date): string {
  * @param {string} markdownBody - The markdown body to calculate the reading time for.
  * @return {number} The estimated reading time in minutes.
  */
-function generateReadingTime(markdownBody: string): number {
+function generateReadingTime(markdownBody: string = ''): number {
   const WORDS_PER_MINUTE = 250; // Average reading speed in words per minute
   const wordCount = markdownBody
     .replace(/#|##|###|####|#####|######/g, '') // Remove headings
