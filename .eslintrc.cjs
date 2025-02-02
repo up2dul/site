@@ -9,7 +9,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:astro/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:tailwindcss/recommended',
   ],
   overrides: [
     {
