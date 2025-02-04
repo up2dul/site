@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import { getEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
+import { WIP } from '~/components/common';
 
 import { ContentLayout } from '~/components/layout';
 import type { Writing } from '~/lib/types';
@@ -21,3 +22,4 @@ const { Content } = await render(entry);
 <ContentLayout frontmatter={entry} Content={Content}>
   <Content />
 </ContentLayout>
+<WIP />

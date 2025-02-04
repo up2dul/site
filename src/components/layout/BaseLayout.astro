@@ -1,7 +1,7 @@
 ---
 import { fade } from 'astro:transitions';
 import SEO, { type Props as SEOProps } from '~/components/SEO.astro';
-import { SkipToContent, WIP } from '~/components/common';
+import { SkipToContent } from '~/components/common';
 import { Header, Footer } from '~/components/layout';
 import { cn } from '~/lib/utils';
 import '~/index.css';
@@ -43,7 +43,5 @@ const { title, seo, layoutType = 'base' } = Astro.props as Props;
     </main>
 
     <Footer />
-
-    <WIP />
   </body>
 </html>
