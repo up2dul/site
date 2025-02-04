@@ -34,9 +34,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
-      - run: export PUBLIC_CLOUDINARY_CLOUD_NAME=${{ secrets.PUBLIC_CLOUDINARY_CLOUD_NAME }}
+      - run: echo "PUBLIC_CLOUDINARY_CLOUD_NAME=${{ secrets.PUBLIC_CLOUDINARY_CLOUD_NAME }}" >> .env
       - run: pnpm install
-      - run: pnpm build
+      - run: pnpm build 
       # Deploy
       - name: 🌎 Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
