@@ -1,4 +1,6 @@
 ---
+import { getCldOgImageUrl } from 'astro-cloudinary/helpers';
+
 import { ClientRouter } from 'astro:transitions';
 import '@fontsource/newsreader/400.css';
 import '@fontsource/newsreader/500.css';
@@ -13,6 +15,7 @@ export interface Props {
   keywords?: string[];
 }
 
+const ogImageUrl = getCldOgImageUrl({ src: 'v1738686509/og_image_igdjon' });
 const {
   title,
   description = site.description,
@@ -45,7 +48,8 @@ const { siteName, siteUrl } = site;
   property="og:description"
   content="A digital garden (personal website) by Abdul Malik, a Frontend Web Developer based in Indonesia."
 />
-<meta property="og:image" content="/og-image.png" />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:secure_url" content={ogImageUrl} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -55,6 +59,6 @@ const { siteName, siteUrl } = site;
   property="twitter:description"
   content="A digital garden (personal website) by Abdul Malik, a Frontend Web Developer based in Indonesia."
 />
-<meta property="twitter:image" content="/og-image.png" />
+<meta property="twitter:image" content={ogImageUrl} />
 
 <ClientRouter />
