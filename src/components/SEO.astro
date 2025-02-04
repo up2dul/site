@@ -36,4 +36,25 @@ const { siteName, siteUrl } = site;
 <meta name="generator" content={Astro.generator} />
 <title>{`${title} | ${siteName}`}</title>
 <meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://up2dul.dev/" />
+<meta property="og:title" content="Home | Abdul Malik" />
+<meta
+  property="og:description"
+  content="A digital garden (personal website) by Abdul Malik, a Frontend Web Developer based in Indonesia."
+/>
+<meta property="og:image" content="/og-image.png" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://up2dul.dev/" />
+<meta property="twitter:title" content="Home | Abdul Malik" />
+<meta
+  property="twitter:description"
+  content="A digital garden (personal website) by Abdul Malik, a Frontend Web Developer based in Indonesia."
+/>
+<meta property="twitter:image" content="/og-image.png" />
+
 <ClientRouter />
