@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
-      - run: export PUBLIC_CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}
+      - run: export PUBLIC_CLOUDINARY_CLOUD_NAME=${{ secrets.PUBLIC_CLOUDINARY_CLOUD_NAME }}
       - run: pnpm install
       - run: pnpm build
       # Deploy
