@@ -24,7 +24,7 @@ const { title, seo, layoutType = 'base' } = Astro.props as Props;
     <Header />
 
     <!-- 93px is the Header height -->
-    <main id="main" class="mt-[93px] pb-24 pt-12">
+    <main id="main" class="mt-[93px] min-h-[calc(100svh-260px)] pb-24 pt-12">
       <h1 transition:animate={fade({ duration: '0.5s' })}>{title}</h1>
 
       <section
