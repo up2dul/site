@@ -1,0 +1,16 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Link } from '~/components/common';
+import { BaseLayout } from '~/components/layout';
+---
+
+<BaseLayout title="404 Page Not Found" seo={{ title: '404 Page Not Found' }}>
+  <p slot="subtitle">Looks like you're lost 😔</p>
+
+  <Fragment slot="contents">
+    <p>Sorry, the page you're looking for doesn't exist or has been moved.</p>
+    <p>
+      <Link href="/"> <Icon name="tabler:arrow-left" /> Back to home page</Link>
+    </p>
+  </Fragment>
+</BaseLayout>
