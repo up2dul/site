@@ -1,15 +1,16 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-import { Link } from '~/components/common';
+import { HeroPattern, Link } from '~/components/common';
 import { BaseLayout } from '~/components/layout';
 import { contacts } from '~/lib/data';
 ---
 
 <BaseLayout title="Abdul Malik" seo={{ title: 'Home' }}>
-  <p slot="subtitle">(/Frən(t) ˈɛnd wɛb dɪ'vɛləpə/).</p>
+  <p slot="subtitle">(/Frən(t) ˈɛnd wɛb dɪ'vɛləpə/)</p>
 
   <Fragment slot="contents">
+    <HeroPattern />
     <p>
       Hello fellas 👋, welcome to my digital garden ツ. I am Abdul, a software
       developer based in Bandung, Indonesia 🇮🇩, who specializes in Frontend Web
