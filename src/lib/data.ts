@@ -39,8 +39,8 @@ export const contacts: { name: string; url: string; icon: Icon }[] = [
     icon: 'tabler:brand-telegram',
   },
   {
-    name: 'Facebook',
-    url: 'https://facebook.com/up2dul',
-    icon: 'tabler:brand-facebook',
+    name: 'Instagram',
+    url: 'https://instagram.com/up2dul',
+    icon: 'tabler:brand-instagram',
   },
 ];
