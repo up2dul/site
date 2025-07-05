@@ -15,7 +15,7 @@ export const site = {
 export const contacts: { name: string; url: string; icon: Icon }[] = [
   {
     name: 'CV',
-    url: 'https://read.cv/up2dul',
+    url: 'https://cv.up2dul.dev',
     icon: 'tabler:file-text',
   },
   {
