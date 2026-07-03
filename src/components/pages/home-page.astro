@@ -1,0 +1,46 @@
+---
+import { ArrowRightIcon } from "lucide-react";
+import { ProfileAvatar } from "@/components/profile-avatar";
+import { Button } from "@/components/ui/button";
+---
+
+<section class="flex items-center gap-4">
+  <ProfileAvatar src="/avatar.png" alt="Abdul Malik's avatar" fallback="AM" client:only="react" />
+  <div>
+    <h1 class="text-lg">Abdul Malik</h1>
+    <h2 class="text-muted-foreground">Frontend Engineer</h2>
+  </div>
+</section>
+
+<section class="mt-8 space-y-4 text-pretty">
+  <p>
+    Hi there, welcome to my
+    <a
+      href="https://lowercasedc.wordpress.com/2023/02/01/what-the-heck-is-a-digital-garden/"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="What is a digital garden?"
+    >
+      digital garden
+    </a>
+    🌱
+  </p>
+  <p>
+    I'm a frontend engineer based in Indonesia with over 3 years of experience.
+    I craft pleasant, performant, and accessible web products with intention,
+    thinking about both user experience and code that's maintainable.
+  </p>
+  <Button client:only="react">
+    Get in touch
+    <ArrowRightIcon />
+  </Button>
+</section>
+
+<section class="mt-8 space-y-4 text-pretty">
+  <img
+    src="https://www.nyomansunima.com/images/clickhouse-bg.webp"
+    alt="A person sitting on a bench with a laptop"
+    class="aspect-3/2 w-full rounded-lg object-cover"
+    loading="eager"
+  />
+</section>

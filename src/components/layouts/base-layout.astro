@@ -1,0 +1,113 @@
+---
+import "@fontsource-variable/geist-mono/wght.css";
+import "@fontsource-variable/inter/wght.css";
+import "@fontsource-variable/inter/wght-italic.css";
+import "@fontsource-variable/lora/wght.css";
+import "@fontsource-variable/lora/wght-italic.css";
+
+import "@/styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: URL | string;
+  type?: "website" | "article";
+  noindex?: boolean;
+}
+
+const {
+  title = "Abdul — Developer & Designer",
+  description = "Personal site of Abdul — design, engineering, and process.",
+  image = "/og-image.png",
+  canonicalURL = Astro.url,
+  type = "website",
+  noindex = false,
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL("https://up2dul.dev");
+const canonical = new URL(canonicalURL, siteUrl);
+const ogImage = image.startsWith("http") ? image : new URL(image, siteUrl).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    <meta
+      name="robots"
+      content={noindex ? "noindex, nofollow" : "index, follow"}
+    />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Abdul" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta
+      name="theme-color"
+      content="#0a0a0a"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Abdul",
+        url: siteUrl.href,
+        jobTitle: "Developer & Designer",
+        image: ogImage,
+        sameAs: ["https://github.com/up2dul", "https://x.com/up2dul"],
+      })}
+    />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Abdul",
+        url: siteUrl.href,
+        description:
+          "Personal site of Abdul — design, engineering, and process.",
+      })}
+    />
+    <!-- Umami -->
+    <script
+      is:inline
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="c6fa352f-be81-4911-866e-085161b73432"></script>
+  </head>
+  <body>
+    <main
+      class="min-h-dvh mx-auto max-w-xl px-4 py-16 isolate relative lg:py-32"
+    >
+      <slot />
+    </main>
+  </body>
+</html>

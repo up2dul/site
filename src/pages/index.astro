@@ -1,62 +1,11 @@
 ---
-import { Icon } from 'astro-icon/components';
-
-import { HeroPattern, Link } from '~/components/common';
-import { BaseLayout } from '~/components/layout';
-import { contacts } from '~/lib/data';
+import BaseLayout from "@/components/layouts/base-layout.astro";
+import HomePage from "@/components/pages/home-page.astro";
 ---
 
-<BaseLayout title="Abdul Malik" seo={{ title: 'Home' }}>
-  <p slot="subtitle">(/Frən(t) ˈɛnd wɛb dɪ'vɛləpə/)</p>
-
-  <Fragment slot="contents">
-    <HeroPattern />
-    <p>
-      Hello fellas 👋, welcome to my digital garden ツ. I am Abdul, a software
-      developer based in Bandung, Indonesia 🇮🇩, who specializes in Frontend Web
-      Development. I am currently an active informatics student and a full-time
-      worker as a Frontend Web Developer at a company in Bandung. Apart from
-      that, I am also part of
-      <Link href="https://dicoding.com" ariaLabel="Dicoding Indonesia" isNewTab>
-        Dicoding Indonesia
-      </Link> as a
-      <Link
-        href="https://dicoding.com/elite"
-        ariaLabel="Dicoding Elite"
-        isNewTab
-      >
-        Dicoding Elite
-      </Link>
-      , who reviewing student's course submission and help to answering course forum
-      discussion.
-    </p>
-
-    <p>
-      I focus on crafting user-friendly, accessible, and visually stunning
-      websites. I casually work with the React ecosystem, mostly my tech stack
-      is React, Vite/Next.js, Tailwind, and TypeScript. Currently, I learning
-      about Vue too.
-    </p>
-
-    <p>
-      Recently, I've embarked on a journey into the world of writing. It's a new
-      thing that I love to do, and I am excited to share my writings. Check this
-      out <Link href="/writings" ariaLabel="Writings page">here!</Link>.
-    </p>
-
-    <p>That's it, let's get in touch with me through my links below.</p>
-
-    <ul class="grid grid-cols-2 gap-3 text-sm lg:grid-cols-3">
-      {
-        contacts.map((contact) => (
-          <li>
-            <Link href={contact.url} ariaLabel={contact.name} isNewTab>
-              <Icon name={contact.icon} />
-              {contact.name}
-            </Link>
-          </li>
-        ))
-      }
-    </ul>
-  </Fragment>
+<BaseLayout
+  title="Abdul — Developer & Designer"
+  description="Abdul's personal site — design, code, and process."
+>
+  <HomePage />
 </BaseLayout>
