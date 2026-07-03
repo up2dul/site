@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/components/layouts/base-layout.astro";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardPanel,
+  CardTitle,
+} from "@/components/ui/card";
+import { formatDate } from "@/lib/date";
+import { calculateReadingTime } from "@/lib/reading-time";
+
+const writings = await getCollection("writings", ({ data }) => !data.draft);
+
+const sortedWritings = writings.sort(
+  (a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime()
+);
+---
+
+<BaseLayout
+  title="Writings — Abdul Malik"
+  description="Tutorials, guides, and thoughts on frontend engineering by Abdul Malik."
+>
+  <div class="space-y-8">
+    <section class="space-y-2">
+      <h1 class="font-heading text-3xl font-semibold">Writings</h1>
+      <p class="text-muted-foreground">
+        Tutorials, guides, and thoughts on frontend engineering.
+      </p>
+    </section>
+
+    <ul class="grid gap-4">
+      {sortedWritings.map((writing) => (
+          <li key={writing.id}>
+            <a href={`/writings/${writing.id}`} class="group block hover:no-underline">
+              <Card className="transition-shadow hover:shadow-sm">
+                <CardHeader>
+                  <div class="flex flex-wrap items-center gap-2 text-muted-foreground text-sm">
+                    <time datetime={writing.data.createdAt.toISOString()}>
+                      {formatDate(writing.data.createdAt)}
+                    </time>
+                    <span>·</span>
+                    <span>{calculateReadingTime(writing.body ?? "")}</span>
+                  </div>
+                  <CardTitle className="font-heading text-lg group-hover:underline group-hover:decoration-foreground">
+                    {writing.data.title}
+                  </CardTitle>
+                  <CardDescription>{writing.data.subtitle}</CardDescription>
+                </CardHeader>
+                <CardPanel>
+                  <ul class="flex flex-wrap gap-1.5">
+                    {writing.data.tags.map((tag) => (
+                      <li key={tag}>
+                        <Badge variant="secondary" size="sm">{tag}</Badge>
+                      </li>
+                    ))}
+                  </ul>
+                </CardPanel>
+              </Card>
+            </a>
+          </li>
+        ))}
+    </ul>
+  </div>
+</BaseLayout>

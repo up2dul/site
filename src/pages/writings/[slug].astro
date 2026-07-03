@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "@/components/layouts/base-layout.astro";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { formatDate } from "@/lib/date";
+import { calculateReadingTime } from "@/lib/reading-time";
+
+export const getStaticPaths = (async () => {
+  const writings = await getCollection("writings", ({ data }) => !data.draft);
+  return writings.map((writing) => ({
+    params: { slug: writing.id },
+    props: { writing },
+  }));
+}) satisfies GetStaticPaths;
+
+const { writing } = Astro.props;
+const { Content } = await render(writing);
+const readingTime = calculateReadingTime(writing.body ?? "");
+---
+
+<BaseLayout
+  title={`${writing.data.title} — Abdul Malik`}
+  description={writing.data.subtitle}
+  type="article"
+>
+  <article class="space-y-8">
+    <header class="space-y-4">
+      <div
+        class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground"
+      >
+        <time datetime={writing.data.createdAt.toISOString()}>
+          {formatDate(writing.data.createdAt)}
+        </time>
+        <span>·</span>
+        <span>{readingTime}</span>
+      </div>
+      <h1 class="font-heading text-3xl font-semibold md:text-4xl">
+        {writing.data.title}
+      </h1>
+      <p class="text-lg text-muted-foreground">{writing.data.subtitle}</p>
+      <ul class="flex flex-wrap gap-2 pt-2">
+        {writing.data.tags.map((tag) => (
+            <li key={tag}>
+              <Badge variant="secondary">{tag}</Badge>
+            </li>
+          ))}
+      </ul>
+    </header>
+
+    <Separator />
+
+    <div
+      class="writing-content space-y-4 text-pretty leading-relaxed text-foreground"
+    >
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

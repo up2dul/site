@@ -1,0 +1,47 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/components/layouts/base-layout.astro";
+import { Card, CardHeader, CardPanel, CardTitle } from "@/components/ui/card";
+
+const projects = await getCollection("projects", ({ data }) => !data.draft);
+---
+
+<BaseLayout
+  title="Projects — Abdul Malik"
+  description="A collection of shipped product applications by Abdul Malik."
+>
+  <div class="space-y-8">
+    <section class="space-y-2">
+      <h1 class="font-heading text-3xl font-semibold">Projects</h1>
+      <p class="text-muted-foreground">
+        A selection of web and mobile applications I have worked on.
+      </p>
+    </section>
+
+    <ul class="grid gap-6 sm:grid-cols-2">
+      {projects.map((project) => (
+          <li key={project.id}>
+            <a href={`/projects/${project.id}`} class="group block hover:no-underline">
+              <Card className="overflow-hidden transition-shadow hover:shadow-md">
+                <CardPanel className="p-0">
+                  <img
+                    src={project.data.images[0]}
+                    alt={project.data.title}
+                    class="aspect-video w-full object-cover"
+                    loading="lazy"
+                    width={600}
+                    height={340}
+                  />
+                </CardPanel>
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg group-hover:underline group-hover:decoration-foreground">
+                    {project.data.title}
+                  </CardTitle>
+                </CardHeader>
+              </Card>
+            </a>
+          </li>
+        ))}
+    </ul>
+  </div>
+</BaseLayout>

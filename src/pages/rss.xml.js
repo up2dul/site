@@ -2,20 +2,21 @@ import { getCollection } from "astro:content";
 import rss from "@astrojs/rss";
 
 export async function GET(context) {
-  const posts = await getCollection("writing", ({ data }) => !data.draft);
-  const sortedPosts = posts.sort(
-    (left, right) => right.data.pubDate.getTime() - left.data.pubDate.getTime()
+  const writings = await getCollection("writings", ({ data }) => !data.draft);
+  const sortedWritings = writings.sort(
+    (left, right) =>
+      right.data.createdAt.getTime() - left.data.createdAt.getTime()
   );
 
   return rss({
-    title: "Abdul's digital garden",
-    description: "Essays and notes from Abdul's digital garden.",
+    title: "Abdul Malik — Writings",
+    description: "Tutorials, guides, and thoughts on frontend engineering.",
     site: context.site,
-    items: sortedPosts.map((post) => ({
-      title: post.data.title,
-      description: post.data.description,
-      pubDate: post.data.pubDate,
-      link: `/writing/${post.id}/`,
+    items: sortedWritings.map((writing) => ({
+      title: writing.data.title,
+      description: writing.data.subtitle,
+      pubDate: writing.data.createdAt,
+      link: `/writings/${writing.id}/`,
     })),
     customData: [
       `<language>en-us</language>`,

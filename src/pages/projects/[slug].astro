@@ -1,0 +1,101 @@
+---
+import { getCollection } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import { ExternalLinkIcon } from "lucide-react";
+import { GithubIcon } from "@/components/icons";
+import BaseLayout from "@/components/layouts/base-layout.astro";
+import { LinkButton } from "@/components/link-button";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { formatDate } from "@/lib/date";
+
+export const getStaticPaths = (async () => {
+  const projects = await getCollection("projects", ({ data }) => !data.draft);
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+const { data } = project;
+---
+
+<BaseLayout title={`${data.title} — Abdul Malik`} description={data.overview}>
+  <article class="space-y-8">
+    <header class="space-y-4">
+      <h1 class="font-heading text-3xl font-semibold md:text-4xl">
+        {data.title}
+      </h1>
+      <p class="text-muted-foreground">
+        Accomplished in {formatDate(data.accomplishedAt)}
+      </p>
+      <ul class="flex flex-wrap gap-2">
+        {data.technologies.map((tech) => (
+          <li key={tech}>
+            <Badge variant="secondary">{tech}</Badge>
+          </li>
+        ))}
+      </ul>
+    </header>
+
+    <section class="space-y-3">
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {data.images.map((image, index) => (
+          <li key={image} class={index === 0 ? "sm:col-span-2" : ""}>
+            <img
+              src={image}
+              alt={`${data.title} screenshot ${index + 1}`}
+              class="w-full rounded-lg border object-cover"
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <div class="flex flex-wrap gap-3">
+      {data.appLink && (
+        <LinkButton href={data.appLink} target="_blank" rel="noreferrer" client:load>
+          Visit App
+          <ExternalLinkIcon aria-hidden="true" />
+        </LinkButton>
+      )}
+      {data.repoLink && (
+        <LinkButton
+          href={data.repoLink}
+          target="_blank"
+          rel="noreferrer"
+          variant="outline"
+          client:load
+        >
+          <GithubIcon aria-hidden="true" />
+          View Source
+        </LinkButton>
+      )}
+    </div>
+
+    <Separator />
+
+    <section class="space-y-3">
+      <h2 class="font-heading text-xl font-semibold">Overview</h2>
+      <p class="text-pretty leading-relaxed text-muted-foreground">
+        {data.overview}
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-heading text-xl font-semibold">Purpose</h2>
+      <p class="text-pretty leading-relaxed text-muted-foreground">
+        {data.purpose}
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-heading text-xl font-semibold">What I Did</h2>
+      <p class="text-pretty leading-relaxed text-muted-foreground">
+        {data.whatIDid}
+      </p>
+    </section>
+  </article>
+</BaseLayout>

@@ -1,0 +1,150 @@
+---
+import BaseLayout from "@/components/layouts/base-layout.astro";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { formatDateRange } from "@/lib/date";
+
+const summary =
+  "Frontend engineer with over 3 years of experience building accessible, performant, and maintainable web products. Comfortable working across the UI stack from design systems to deployment, with a strong focus on user experience and clean code.";
+
+const experiences = [
+  {
+    company: "Tech Studio",
+    role: "Frontend Engineer",
+    dates: { start: "2023-03-01" },
+    description:
+      "Lead frontend development for client web applications using React, TypeScript, and Tailwind CSS. Establish component patterns, improve accessibility, and optimize core web vitals.",
+  },
+  {
+    company: "Digital Agency",
+    role: "Frontend Developer",
+    dates: { start: "2021-06-01", end: "2023-02-28" },
+    description:
+      "Built responsive marketing sites and web applications for diverse clients. Collaborated with designers to implement pixel-perfect UIs and mentored junior developers on modern frontend practices.",
+  },
+  {
+    company: "Startup Incubator",
+    role: "Junior Web Developer",
+    dates: { start: "2020-01-01", end: "2021-05-31" },
+    description:
+      "Developed and maintained landing pages, implemented UI components, and supported product teams with rapid prototyping and iterative improvements.",
+  },
+];
+
+const education = [
+  {
+    institution: "State University",
+    degree: "Bachelor of Computer Science",
+    dates: { start: "2016-09-01", end: "2020-06-01" },
+  },
+];
+
+const skills = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Tailwind CSS",
+  "Astro",
+  "Accessibility",
+  "Performance",
+  "Design Systems",
+  "Git",
+  "UI/UX Collaboration",
+];
+---
+
+<BaseLayout
+  title="CV — Abdul Malik"
+  description="Professional CV of Abdul Malik, Frontend Engineer."
+>
+  <div class="cv-page space-y-8">
+    <header class="space-y-2">
+      <h1 class="font-heading text-3xl font-semibold md:text-4xl">
+        Abdul Malik
+      </h1>
+      <p class="text-lg text-muted-foreground">Frontend Engineer</p>
+      <p class="text-sm text-muted-foreground">
+        hello@up2dul.dev · up2dul.dev · Indonesia
+      </p>
+    </header>
+
+    <Separator />
+
+    <section class="space-y-3">
+      <h2 class="font-heading text-xl font-semibold">Summary</h2>
+      <p class="text-pretty leading-relaxed text-muted-foreground">
+        {summary}
+      </p>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="font-heading text-xl font-semibold">Experience</h2>
+      <ul class="space-y-6">
+        {experiences.map((experience) => (
+            <li key={experience.company} class="space-y-1">
+              <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+                <h3 class="font-heading font-medium text-lg">
+                  {experience.role}
+                </h3>
+                <span class="text-muted-foreground text-sm">
+                  {formatDateRange(experience.dates)}
+                </span>
+              </div>
+              <p class="font-medium text-muted-foreground text-sm">
+                {experience.company}
+              </p>
+              <p class="text-pretty text-muted-foreground leading-relaxed">
+                {experience.description}
+              </p>
+            </li>
+          ))}
+      </ul>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="font-heading text-xl font-semibold">Education</h2>
+      <ul class="space-y-4">
+        {education.map((item) => (
+            <li key={item.degree} class="space-y-1">
+              <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+                <h3 class="font-heading font-medium text-lg">{item.degree}</h3>
+                <span class="text-muted-foreground text-sm">
+                  {formatDateRange(item.dates)}
+                </span>
+              </div>
+              <p class="text-muted-foreground text-sm">{item.institution}</p>
+            </li>
+          ))}
+      </ul>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-heading text-xl font-semibold">Skills</h2>
+      <ul class="flex flex-wrap gap-2">
+        {skills.map((skill) => (
+            <li key={skill}>
+              <Badge variant="secondary">{skill}</Badge>
+            </li>
+          ))}
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+@media print {
+  .cv-page {
+    max-width: none;
+    padding: 0;
+  }
+
+  .cv-page section {
+    break-inside: avoid;
+  }
+
+  .cv-page h1,
+  .cv-page h2 {
+    break-after: avoid;
+  }
+}
+</style>

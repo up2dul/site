@@ -1,0 +1,46 @@
+import { RssIcon } from "lucide-react";
+import { GithubIcon } from "./icons";
+
+const currentYear = new Date().getFullYear();
+
+export function Footer(): React.ReactElement {
+  return (
+    <footer className="w-full border-t bg-background">
+      <div className="mx-auto flex max-w-3xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-muted-foreground text-sm">
+          &copy; {currentYear} Abdul Malik. All rights reserved.
+        </p>
+
+        <nav aria-label="Footer">
+          <ul className="flex flex-wrap items-center gap-4 text-muted-foreground text-sm">
+            <li>
+              <a href="/llms.txt" className="hover:text-foreground">
+                llms.txt
+              </a>
+            </li>
+            <li>
+              <a
+                href="/rss.xml"
+                className="inline-flex items-center gap-1.5 hover:text-foreground"
+              >
+                <RssIcon aria-hidden="true" className="size-4" />
+                RSS
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/up2dul/site"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 hover:text-foreground"
+              >
+                <GithubIcon className="size-4" />
+                GitHub
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  );
+}

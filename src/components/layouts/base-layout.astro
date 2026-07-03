@@ -7,6 +7,8 @@ import "@fontsource-variable/lora/wght-italic.css";
 
 import "@/styles/global.css";
 
+import { LayoutShell } from "@/components/layout-shell";
+
 interface Props {
   title?: string;
   description?: string;
@@ -17,8 +19,8 @@ interface Props {
 }
 
 const {
-  title = "Abdul — Developer & Designer",
-  description = "Personal site of Abdul — design, engineering, and process.",
+  title = "Abdul — Frontend Engineer",
+  description = "Personal site of Abdul — frontend engineering, design, and writings.",
   image = "/og-image.png",
   canonicalURL = Astro.url,
   type = "website",
@@ -31,45 +33,63 @@ const ogImage = image.startsWith("http") ? image : new URL(image, siteUrl).href;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical.href} />
+    <meta name="description" content={description}>
+    <link rel="canonical" href={canonical.href}>
     <meta
       name="robots"
       content={noindex ? "noindex, nofollow" : "index, follow"}
-    />
+    >
 
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical.href} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:type" content={type} />
-    <meta property="og:site_name" content="Abdul" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:url" content={canonical.href}>
+    <meta property="og:image" content={ogImage}>
+    <meta property="og:type" content={type}>
+    <meta property="og:site_name" content="Abdul">
+    <meta property="og:locale" content="en_US">
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={ogImage}>
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <meta
       name="theme-color"
       content="#0a0a0a"
       media="(prefers-color-scheme: dark)"
-    />
+    >
     <meta
       name="theme-color"
       content="#ffffff"
       media="(prefers-color-scheme: light)"
-    />
+    >
+
+    <script is:inline>
+    (() => {
+      const stored = localStorage.getItem("theme");
+      const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      const theme =
+        stored === "dark" || (!stored && systemDark)
+          ? "dark"
+          : stored === "light"
+            ? "light"
+            : systemDark
+              ? "dark"
+              : "light";
+      document.documentElement.classList.add(theme);
+    })();
+    </script>
 
     <script
       is:inline
@@ -77,11 +97,15 @@ const ogImage = image.startsWith("http") ? image : new URL(image, siteUrl).href;
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Person",
-        name: "Abdul",
+        name: "Abdul Malik",
         url: siteUrl.href,
-        jobTitle: "Developer & Designer",
+        jobTitle: "Frontend Engineer",
         image: ogImage,
-        sameAs: ["https://github.com/up2dul", "https://x.com/up2dul"],
+        sameAs: [
+          "https://github.com/up2dul",
+          "https://x.com/up2dul",
+          "https://linkedin.com/in/up2dul",
+        ],
       })}
     />
     <script
@@ -90,10 +114,10 @@ const ogImage = image.startsWith("http") ? image : new URL(image, siteUrl).href;
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "WebSite",
-        name: "Abdul",
+        name: "Abdul Malik",
         url: siteUrl.href,
         description:
-          "Personal site of Abdul — design, engineering, and process.",
+          "Personal site of Abdul — frontend engineering, design, and writings.",
       })}
     />
     <!-- Umami -->
@@ -101,13 +125,16 @@ const ogImage = image.startsWith("http") ? image : new URL(image, siteUrl).href;
       is:inline
       defer
       src="https://cloud.umami.is/script.js"
-      data-website-id="c6fa352f-be81-4911-866e-085161b73432"></script>
+      data-website-id="c6fa352f-be81-4911-866e-085161b73432"
+    ></script>
   </head>
-  <body>
-    <main
-      class="min-h-dvh mx-auto max-w-xl px-4 py-16 isolate relative lg:py-32"
-    >
-      <slot />
-    </main>
+  <body
+    class="flex min-h-dvh flex-col bg-background font-sans text-foreground antialiased"
+  >
+    <LayoutShell client:load>
+      <main class="mx-auto w-full max-w-3xl flex-1 px-4 py-12 md:py-20">
+        <slot />
+      </main>
+    </LayoutShell>
   </body>
 </html>
