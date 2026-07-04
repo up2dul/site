@@ -24,7 +24,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "typecheck": "astro check"
+    "typecheck": "astro check",
+    "prepare": "lefthook install"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.0",
