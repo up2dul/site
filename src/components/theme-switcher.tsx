@@ -1,5 +1,3 @@
-"use client";
-
 import { MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
 import {
   Select,
@@ -7,6 +5,7 @@ import {
   SelectItem,
   SelectPopup,
 } from "@/components/ui/select";
+import { usePortalContainer } from "../hooks/use-portal-container";
 import { type Theme, useTheme } from "./theme-provider";
 
 const themes: { label: string; value: Theme; icon: typeof SunIcon }[] = [
@@ -16,25 +15,31 @@ const themes: { label: string; value: Theme; icon: typeof SunIcon }[] = [
 ];
 
 export function ThemeSwitcher(): React.ReactElement {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, mounted } = useTheme();
+  const container = usePortalContainer();
 
   const active = themes.find((t) => t.value === theme) ?? themes[2];
   const Icon = active.icon;
 
   return (
-    <Select value={theme} onValueChange={(value) => setTheme(value as Theme)}>
+    <Select value={theme} onValueChange={setTheme}>
       <SelectButton
         aria-label="Select theme"
         className="w-auto min-w-0 gap-1.5 ps-2.5 pe-2"
       >
-        <Icon aria-hidden="true" className="size-4" />
-        <span className="hidden sm:inline">{active.label}</span>
+        {mounted ? (
+          <Icon aria-hidden="true" className="size-4" />
+        ) : (
+          <span className="size-4" />
+        )}
       </SelectButton>
-      <SelectPopup align="end" className="min-w-[8rem]">
+      <SelectPopup align="end" className="min-w-32" portalProps={{ container }}>
         {themes.map(({ label, value, icon: ItemIcon }) => (
           <SelectItem key={value} value={value}>
-            <ItemIcon aria-hidden="true" className="size-4" />
-            {label}
+            <span className="flex items-center gap-2">
+              <ItemIcon aria-hidden="true" className="size-4" />
+              {label}
+            </span>
           </SelectItem>
         ))}
       </SelectPopup>
