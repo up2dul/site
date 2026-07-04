@@ -17,7 +17,6 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "Projects", href: "/projects" },
   { label: "Writings", href: "/writings" },
-  { label: "CV", href: "/cv" },
 ];
 
 function NavLinks({
@@ -29,13 +28,13 @@ function NavLinks({
 }): React.ReactElement {
   return (
     <nav className={className}>
-      <ul className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-0.5">
+      <ul className="flex flex-col gap-1 sm:flex-row">
         {navLinks.map((link) => (
           <li key={link.href}>
             <a
               href={link.href}
               onClick={onNavigate}
-              className="inline-flex rounded-md px-3 py-2 font-medium text-foreground text-sm hover:bg-accent hover:no-underline sm:px-2.5"
+              className="inline-flex w-full rounded-md px-3 py-2 font-medium text-foreground text-sm hover:bg-accent hover:no-underline sm:px-2.5"
             >
               {link.label}
             </a>
@@ -51,37 +50,28 @@ export function Header(): React.ReactElement {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-4">
-        <a
-          href="/"
-          className="font-heading font-semibold text-lg hover:no-underline"
-        >
-          Abdul
-        </a>
+      <div className="mx-auto flex h-14 max-w-2xl items-center justify-between px-4">
+        <NavLinks className="hidden md:block" />
+        <ThemeSwitcher />
 
-        <div className="flex items-center gap-2">
-          <NavLinks className="hidden md:block" />
-          <ThemeSwitcher />
-
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger
-              render={
-                <Button variant="ghost" size="icon" className="md:hidden" />
-              }
-            >
-              <MenuIcon aria-hidden="true" />
-              <span className="sr-only">Open menu</span>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[280px]">
-              <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
-              </SheetHeader>
-              <SheetPanel>
-                <NavLinks onNavigate={() => setOpen(false)} />
-              </SheetPanel>
-            </SheetContent>
-          </Sheet>
-        </div>
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger
+            render={
+              <Button variant="ghost" size="icon" className="md:hidden" />
+            }
+          >
+            <MenuIcon aria-hidden="true" />
+            <span className="sr-only">Open menu</span>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-70">
+            <SheetHeader>
+              <SheetTitle>Menu</SheetTitle>
+            </SheetHeader>
+            <SheetPanel>
+              <NavLinks onNavigate={() => setOpen(false)} />
+            </SheetPanel>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   );
