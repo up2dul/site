@@ -279,6 +279,8 @@
   }
   html {
     @apply scroll-smooth;
+    background-color: var(--background);
+    color-scheme: light dark;
   }
   code,
   kbd,
@@ -299,9 +301,6 @@
   h5,
   h6 {
     @apply font-heading font-medium;
-  }
-  a {
-    @apply underline decoration-muted-foreground/60 decoration-2 underline-offset-4 hover:decoration-foreground transition-colors;
   }
 }
 

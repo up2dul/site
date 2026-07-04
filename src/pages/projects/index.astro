@@ -19,9 +19,13 @@ const projects = await getCollection("projects", ({ data }) => !data.draft);
     </section>
 
     <ul class="grid gap-6 sm:grid-cols-2">
-      {projects.map((project) => (
+      {
+        projects.map((project) => (
           <li key={project.id}>
-            <a href={`/projects/${project.id}`} class="group block hover:no-underline">
+            <a
+              href={`/projects/${project.id}`}
+              class="group block hover:no-underline"
+            >
               <Card className="overflow-hidden transition-shadow hover:shadow-md">
                 <CardPanel className="p-0">
                   <img
@@ -41,7 +45,8 @@ const projects = await getCollection("projects", ({ data }) => !data.draft);
               </Card>
             </a>
           </li>
-        ))}
+        ))
+      }
     </ul>
   </div>
 </BaseLayout>
