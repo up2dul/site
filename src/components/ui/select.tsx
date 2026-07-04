@@ -1,6 +1,5 @@
 "use client";
 
-import { mergeProps } from "@base-ui/react/merge-props";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -43,28 +42,18 @@ export function SelectButton({
   children,
   ...props
 }: SelectButtonProps): React.ReactElement {
-  const typeValue: React.ButtonHTMLAttributes<HTMLButtonElement>["type"] =
-    render ? undefined : "button";
-
-  const defaultProps = {
-    children: (
-      <>
-        <span className="flex-1 truncate in-data-placeholder:text-muted-foreground/72">
-          {children}
-        </span>
-        <ChevronsUpDownIcon className={selectTriggerIconClassName} />
-      </>
-    ),
-    className: cn(selectTriggerVariants({ size }), "min-w-0", className),
-    "data-slot": "select-button",
-    type: typeValue,
-  };
-
-  return useRender({
-    defaultTagName: "button",
-    props: mergeProps<"button">(defaultProps, props),
-    render,
-  });
+  return (
+    <SelectPrimitive.Trigger
+      className={cn(selectTriggerVariants({ size }), "min-w-0", className)}
+      data-slot="select-button"
+      {...props}
+    >
+      <span className="flex-1 truncate in-data-placeholder:text-muted-foreground/72">
+        {children}
+      </span>
+      <ChevronsUpDownIcon className={selectTriggerIconClassName} />
+    </SelectPrimitive.Trigger>
+  );
 }
 
 export function SelectTrigger({
