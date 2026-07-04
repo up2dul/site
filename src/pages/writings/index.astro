@@ -25,7 +25,7 @@ const sortedWritings = writings.sort(
 >
   <div class="space-y-8">
     <section class="space-y-2">
-      <h1 class="font-heading text-3xl font-semibold">Writings</h1>
+      <h1 class="text-2xl md:text-3xl">Writings</h1>
       <p class="text-muted-foreground">
         Tutorials, guides, and thoughts on frontend engineering.
       </p>
@@ -34,7 +34,10 @@ const sortedWritings = writings.sort(
     <ul class="grid gap-4">
       {sortedWritings.map((writing) => (
           <li key={writing.id}>
-            <a href={`/writings/${writing.id}`} class="group block hover:no-underline">
+            <a
+              href={`/writings/${writing.id}`}
+              class="group block hover:no-underline"
+            >
               <Card className="transition-shadow hover:shadow-sm">
                 <CardHeader>
                   <div class="flex flex-wrap items-center gap-2 text-muted-foreground text-sm">
@@ -44,7 +47,7 @@ const sortedWritings = writings.sort(
                     <span>·</span>
                     <span>{calculateReadingTime(writing.body ?? "")}</span>
                   </div>
-                  <CardTitle className="font-heading text-lg group-hover:underline group-hover:decoration-foreground">
+                  <CardTitle className="text-lg group-hover:underline group-hover:decoration-foreground">
                     {writing.data.title}
                   </CardTitle>
                   <CardDescription>{writing.data.subtitle}</CardDescription>
@@ -53,7 +56,9 @@ const sortedWritings = writings.sort(
                   <ul class="flex flex-wrap gap-1.5">
                     {writing.data.tags.map((tag) => (
                       <li key={tag}>
-                        <Badge variant="secondary" size="sm">{tag}</Badge>
+                        <Badge variant="secondary" size="sm">
+                          {tag}
+                        </Badge>
                       </li>
                     ))}
                   </ul>

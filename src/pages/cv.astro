@@ -59,10 +59,8 @@ const skills = [
 >
   <div class="cv-page space-y-8">
     <header class="space-y-2">
-      <h1 class="font-heading text-3xl font-semibold md:text-4xl">
-        Abdul Malik
-      </h1>
-      <p class="text-lg text-muted-foreground">Frontend Engineer</p>
+      <h1 class="text-2xl md:text-3xl">Abdul Malik</h1>
+      <p class="text-muted-foreground">Frontend Engineer</p>
       <p class="text-sm text-muted-foreground">
         hello@up2dul.dev · up2dul.dev · Indonesia
       </p>
@@ -71,26 +69,26 @@ const skills = [
     <Separator />
 
     <section class="space-y-3">
-      <h2 class="font-heading text-xl font-semibold">Summary</h2>
+      <h2 class="text-xl">Summary</h2>
       <p class="text-pretty leading-relaxed text-muted-foreground">
         {summary}
       </p>
     </section>
 
     <section class="space-y-4">
-      <h2 class="font-heading text-xl font-semibold">Experience</h2>
+      <h2 class="text-xl">Experience</h2>
       <ul class="space-y-6">
         {experiences.map((experience) => (
             <li key={experience.company} class="space-y-1">
               <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-                <h3 class="font-heading font-medium text-lg">
+                <h3 class="text-lg">
                   {experience.role}
                 </h3>
                 <span class="text-muted-foreground text-sm">
                   {formatDateRange(experience.dates)}
                 </span>
               </div>
-              <p class="font-medium text-muted-foreground text-sm">
+              <p class="text-muted-foreground text-sm">
                 {experience.company}
               </p>
               <p class="text-pretty text-muted-foreground leading-relaxed">
@@ -102,12 +100,12 @@ const skills = [
     </section>
 
     <section class="space-y-4">
-      <h2 class="font-heading text-xl font-semibold">Education</h2>
+      <h2 class="text-xl">Education</h2>
       <ul class="space-y-4">
         {education.map((item) => (
             <li key={item.degree} class="space-y-1">
               <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-                <h3 class="font-heading font-medium text-lg">{item.degree}</h3>
+                <h3 class="text-lg">{item.degree}</h3>
                 <span class="text-muted-foreground text-sm">
                   {formatDateRange(item.dates)}
                 </span>
@@ -119,7 +117,7 @@ const skills = [
     </section>
 
     <section class="space-y-3">
-      <h2 class="font-heading text-xl font-semibold">Skills</h2>
+      <h2 class="text-xl">Skills</h2>
       <ul class="flex flex-wrap gap-2">
         {skills.map((skill) => (
             <li key={skill}>
