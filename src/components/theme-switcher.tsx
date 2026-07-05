@@ -1,11 +1,12 @@
 import { MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 import {
   Select,
   SelectButton,
   SelectItem,
   SelectPopup,
 } from "@/components/ui/select";
-import { usePortalContainer } from "../hooks/use-portal-container";
+import { PORTAL_ROOT_ID } from "@/lib/constants";
 import { type Theme, useTheme } from "./theme-provider";
 
 const themes: { label: string; value: Theme; icon: typeof SunIcon }[] = [
@@ -16,7 +17,11 @@ const themes: { label: string; value: Theme; icon: typeof SunIcon }[] = [
 
 export function ThemeSwitcher(): React.ReactElement {
   const { theme, setTheme, mounted } = useTheme();
-  const container = usePortalContainer();
+  const [container, setContainer] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    setContainer(document.getElementById(PORTAL_ROOT_ID));
+  }, []);
 
   const active = themes.find((t) => t.value === theme) ?? themes[2];
   const Icon = active.icon;

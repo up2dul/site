@@ -8,9 +8,9 @@ import "@fontsource-variable/lora/wght-italic.css";
 import "@/styles/global.css";
 
 import { ClientRouter } from "astro:transitions";
-import { AppShell } from "@/components/app-shell";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { PORTAL_ROOT_ID } from "@/lib/constants";
 
 interface Props {
   title?: string;
@@ -209,17 +209,15 @@ const ogImage = image.startsWith("http") ? image : new URL(image, siteUrl).href;
     class="flex min-h-dvh flex-col bg-background font-sans text-foreground antialiased"
   >
     <Header client:load transition:persist />
-    <div id="ui-portal-root" transition:persist></div>
+    <div id={PORTAL_ROOT_ID} transition:persist></div>
     <div
       transition:name="main-content"
       transition:animate="none"
       class="flex flex-1 flex-col bg-background"
     >
-      <AppShell client:load>
-        <main class="mx-auto w-full max-w-2xl flex-1 px-4 pt-12 pb-20">
-          <slot />
-        </main>
-      </AppShell>
+      <main class="mx-auto w-full max-w-2xl flex-1 px-4 pt-12 pb-20">
+        <slot />
+      </main>
     </div>
     <Footer client:load transition:persist />
   </body>

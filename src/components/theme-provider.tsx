@@ -56,13 +56,3 @@ export function useTheme() {
     mounted, // expose this so the switcher can hide/placeholder until safe
   };
 }
-
-interface ThemeProviderProps {
-  children: React.ReactNode;
-}
-
-export function ThemeProvider({
-  children,
-}: ThemeProviderProps): React.ReactElement {
-  return <>{children}</>;
-}
