@@ -42,7 +42,7 @@ const readingTime = calculateReadingTime(writing.body ?? "");
       <p class="text-muted-foreground">{writing.data.subtitle}</p>
       <ul class="flex flex-wrap gap-2 pt-2">
         {writing.data.tags.map((tag) => (
-            <li key={tag}>
+            <li>
               <Badge variant="secondary">{tag}</Badge>
             </li>
           ))}

@@ -32,47 +32,52 @@ const { data } = project;
       </p>
       <ul class="flex flex-wrap gap-2">
         {data.technologies.map((tech) => (
-          <li key={tech}>
-            <Badge variant="secondary">{tech}</Badge>
-          </li>
-        ))}
+            <li>
+              <Badge variant="secondary">{tech}</Badge>
+            </li>
+          ))}
       </ul>
     </header>
 
     <section class="space-y-3">
       <ul class="grid gap-4 sm:grid-cols-2">
         {data.images.map((image, index) => (
-          <li key={image} class={index === 0 ? "sm:col-span-2" : ""}>
-            <img
-              src={image}
-              alt={`${data.title} screenshot ${index + 1}`}
-              class="w-full rounded-lg border object-cover"
-              loading={index === 0 ? "eager" : "lazy"}
-            />
-          </li>
-        ))}
+            <li class={index === 0 ? "sm:col-span-2" : ""}>
+              <img
+                src={image}
+                alt={`${data.title} screenshot ${index + 1}`}
+                class="w-full rounded-lg border object-cover"
+                loading={index === 0 ? "eager" : "lazy"}
+              />
+            </li>
+          ))}
       </ul>
     </section>
 
     <div class="flex flex-wrap gap-3">
       {data.appLink && (
-        <LinkButton href={data.appLink} target="_blank" rel="noreferrer" client:load>
-          Visit App
-          <ExternalLinkIcon aria-hidden="true" />
-        </LinkButton>
-      )}
+          <LinkButton
+            href={data.appLink}
+            target="_blank"
+            rel="noreferrer"
+            client:load
+          >
+            Visit App
+            <ExternalLinkIcon aria-hidden="true" />
+          </LinkButton>
+        )}
       {data.repoLink && (
-        <LinkButton
-          href={data.repoLink}
-          target="_blank"
-          rel="noreferrer"
-          variant="outline"
-          client:load
-        >
-          <GithubIcon aria-hidden="true" />
-          View Source
-        </LinkButton>
-      )}
+          <LinkButton
+            href={data.repoLink}
+            target="_blank"
+            rel="noreferrer"
+            variant="outline"
+            client:load
+          >
+            <GithubIcon aria-hidden="true" />
+            View Source
+          </LinkButton>
+        )}
     </div>
 
     <Separator />

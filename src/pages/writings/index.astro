@@ -33,7 +33,7 @@ const sortedWritings = writings.sort(
 
     <ul class="grid gap-4">
       {sortedWritings.map((writing) => (
-          <li key={writing.id}>
+          <li>
             <a
               href={`/writings/${writing.id}`}
               class="group block hover:no-underline"
@@ -55,7 +55,7 @@ const sortedWritings = writings.sort(
                 <CardPanel>
                   <ul class="flex flex-wrap gap-1.5">
                     {writing.data.tags.map((tag) => (
-                      <li key={tag}>
+                      <li>
                         <Badge variant="secondary" size="sm">
                           {tag}
                         </Badge>

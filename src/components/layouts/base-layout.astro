@@ -45,128 +45,128 @@ const ogImage = image.startsWith("http") ? image : new URL(image, siteUrl).href;
   <head>
     <!-- Theme must be set before any render to prevent flash -->
     <script is:inline>
-      (() => {
-        function resolveTheme() {
-          const stored = localStorage.getItem("theme");
-          const systemDark = window.matchMedia(
-            "(prefers-color-scheme: dark)",
-          ).matches;
-          if (stored === "dark") return "dark";
-          if (stored === "light") return "light";
-          return systemDark ? "dark" : "light";
-        }
+    (() => {
+      function resolveTheme() {
+        const stored = localStorage.getItem("theme");
+        const systemDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        if (stored === "dark") return "dark";
+        if (stored === "light") return "light";
+        return systemDark ? "dark" : "light";
+      }
 
-        function applyToRoot(root, resolved) {
-          root.classList.remove("light", "dark");
-          root.classList.add(resolved);
-        }
+      function applyToRoot(root, resolved) {
+        root.classList.remove("light", "dark");
+        root.classList.add(resolved);
+      }
 
-        function updateThemeColor(doc, resolved) {
-          const themeColor = resolved === "dark" ? "#0a0a0a" : "#ffffff";
-          doc.querySelectorAll('meta[name="theme-color"]').forEach((el) => {
-            el.remove();
-          });
-          const meta = doc.createElement("meta");
-          meta.setAttribute("name", "theme-color");
-          meta.setAttribute("content", themeColor);
-          doc.head.appendChild(meta);
-        }
+      function updateThemeColor(doc, resolved) {
+        const themeColor = resolved === "dark" ? "#0a0a0a" : "#ffffff";
+        doc.querySelectorAll('meta[name="theme-color"]').forEach((el) => {
+          el.remove();
+        });
+        const meta = doc.createElement("meta");
+        meta.setAttribute("name", "theme-color");
+        meta.setAttribute("content", themeColor);
+        doc.head.appendChild(meta);
+      }
 
-        function applyTheme(doc) {
-          const resolved = resolveTheme();
-          applyToRoot(doc.documentElement, resolved);
-          updateThemeColor(doc, resolved);
-        }
+      function applyTheme(doc) {
+        const resolved = resolveTheme();
+        applyToRoot(doc.documentElement, resolved);
+        updateThemeColor(doc, resolved);
+      }
 
-        applyTheme(document);
+      applyTheme(document);
 
-        if (!window.__themeSetupDone) {
-          window.__themeSetupDone = true;
-          document.addEventListener("astro:before-swap", (event) => {
-            applyTheme(event.newDocument);
-          });
-        }
-      })();
+      if (!window.__themeSetupDone) {
+        window.__themeSetupDone = true;
+        document.addEventListener("astro:before-swap", (event) => {
+          applyTheme(event.newDocument);
+        });
+      }
+    })();
     </script>
 
     <ClientRouter />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical.href} />
+    <meta name="description" content={description}>
+    <link rel="canonical" href={canonical.href}>
 
     <!-- View Transitions -->
     <style is:inline>
-      @keyframes fade-blur-in {
-        from {
-          opacity: 0;
-          filter: blur(12px);
-        }
-        to {
-          opacity: 1;
-          filter: blur(0);
-        }
+    @keyframes fade-blur-in {
+      from {
+        opacity: 0;
+        filter: blur(12px);
       }
+      to {
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
 
-      @keyframes fade-blur-out {
-        from {
-          opacity: 1;
-          filter: blur(0);
-        }
-        to {
-          opacity: 0;
-          filter: blur(12px);
-        }
+    @keyframes fade-blur-out {
+      from {
+        opacity: 1;
+        filter: blur(0);
       }
+      to {
+        opacity: 0;
+        filter: blur(12px);
+      }
+    }
 
-      ::view-transition-old(main-content) {
-        animation: fade-blur-out 0.5s ease-in-out;
-      }
+    ::view-transition-old(main-content) {
+      animation: fade-blur-out 0.5s ease-in-out;
+    }
 
-      ::view-transition-new(main-content) {
-        animation: fade-blur-in 0.5s ease-in-out;
-      }
+    ::view-transition-new(main-content) {
+      animation: fade-blur-in 0.5s ease-in-out;
+    }
 
-      /* Root stays static during transitions */
-      ::view-transition-group(root),
-      ::view-transition-old(root),
-      ::view-transition-new(root) {
-        animation: none;
-      }
+    /* Root stays static during transitions */
+    ::view-transition-group(root),
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+    }
     </style>
     <meta
       name="robots"
       content={noindex ? "noindex, nofollow" : "index, follow"}
-    />
+    >
 
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical.href} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:type" content={type} />
-    <meta property="og:site_name" content="Abdul" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:url" content={canonical.href}>
+    <meta property="og:image" content={ogImage}>
+    <meta property="og:type" content={type}>
+    <meta property="og:site_name" content="Abdul">
+    <meta property="og:locale" content="en_US">
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={ogImage}>
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <meta
       name="theme-color"
       content="#0a0a0a"
       media="(prefers-color-scheme: dark)"
-    />
+    >
     <meta
       name="theme-color"
       content="#ffffff"
       media="(prefers-color-scheme: light)"
-    />
+    >
 
     <script
       is:inline
@@ -202,7 +202,8 @@ const ogImage = image.startsWith("http") ? image : new URL(image, siteUrl).href;
       is:inline
       defer
       src="https://cloud.umami.is/script.js"
-      data-website-id="c6fa352f-be81-4911-866e-085161b73432"></script>
+      data-website-id="c6fa352f-be81-4911-866e-085161b73432"
+    ></script>
   </head>
   <body
     class="flex min-h-dvh flex-col bg-background font-sans text-foreground antialiased"

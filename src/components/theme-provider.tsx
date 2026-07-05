@@ -61,6 +61,8 @@ interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
-export function ThemeProvider({ children }: ThemeProviderProps): React.ReactElement {
+export function ThemeProvider({
+  children,
+}: ThemeProviderProps): React.ReactElement {
   return <>{children}</>;
 }
