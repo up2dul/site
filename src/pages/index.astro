@@ -1,6 +1,6 @@
 ---
 import { ArrowRightIcon, MailIcon } from "lucide-react";
-import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/icons";
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import BaseLayout from "@/components/layouts/base-layout.astro";
 import { LinkButton } from "@/components/link-button";
 import { Separator } from "@/components/ui/separator";
@@ -8,37 +8,32 @@ import { formatDateRange } from "@/lib/date";
 
 const experiences = [
   {
-    company: "Tech Studio",
+    company: "Luarsekolah",
     role: "Frontend Engineer",
-    dates: { start: "2023-03-01" },
+    dates: { start: "2024-09-01" },
     description:
-      "Building accessible, performant web products with React and TypeScript. Collaborating with designers and backend engineers to ship features end-to-end.",
+      "Revamped the main product app using Next.js, TypeScript, and Tailwind, improving Core Web Vitals from 10-33 to 60-100. Led frontend dashboard development for a B2B AI product platform.",
   },
   {
-    company: "Digital Agency",
+    company: "Svara",
     role: "Frontend Developer",
-    dates: { start: "2021-06-01", end: "2023-02-28" },
+    dates: { start: "2023-05-01", end: "2024-08-01" },
     description:
-      "Developed responsive marketing sites and web applications for clients across industries. Improved core web vitals and component reuse across projects.",
+      "Maintained and extended an internal analytics dashboard using Next.js and TypeScript. Set up GitLab CI/CD pipelines. Designed and delivered a 7-week frontend internship curriculum.",
   },
   {
-    company: "Startup Incubator",
-    role: "Junior Web Developer",
-    dates: { start: "2020-01-01", end: "2021-05-31" },
+    company: "Dicoding",
+    role: "External Code Reviewer",
+    dates: { start: "2023-04-01", end: "2026-03-01" },
     description:
-      "Maintained landing pages, implemented UI components, and learned modern frontend tooling while supporting early-stage product teams.",
+      "Reviewed student submissions across several courses, provided solutions and suggestions aligned with course objectives. Supported course forums by answering technical questions.",
   },
 ];
 
 const contacts = [
-  { label: "Email", href: "mailto:hello@up2dul.dev", icon: MailIcon },
+  { label: "Email", href: "mailto:malik301002@gmail.com", icon: MailIcon },
   { label: "GitHub", href: "https://github.com/up2dul", icon: GithubIcon },
-  { label: "Twitter", href: "https://x.com/up2dul", icon: TwitterIcon },
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/up2dul",
-    icon: LinkedinIcon,
-  },
+  { label: "LinkedIn", href: "https://linkedin.com/in/up2dul", icon: LinkedinIcon },
 ];
 ---
 
@@ -53,9 +48,9 @@ const contacts = [
     </div>
     <p class="leading-relaxed">
       I'm a frontend engineer based in Indonesia with over 3 years of
-      experience. I craft pleasant, performant, and accessible web products with
-      intention, thinking about both user experience and code that's
-      maintainable.
+      experience building accessible, performant web products. I focus on
+      the UI stack — from design systems to deployment — thinking about
+      both user experience and code that's maintainable.
     </p>
 
     <div class="flex flex-wrap gap-3">

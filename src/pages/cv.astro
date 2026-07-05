@@ -1,72 +1,108 @@
 ---
 import BaseLayout from "@/components/layouts/base-layout.astro";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { formatDateRange } from "@/lib/date";
 
 const summary =
-  "Frontend engineer with over 3 years of experience building accessible, performant, and maintainable web products. Comfortable working across the UI stack from design systems to deployment, with a strong focus on user experience and clean code.";
+  "Software engineer with over 3 years of experience building accessible, performant web products. Comfortable working across the UI stack from design systems to deployment, with a strong focus on user experience and clean code.";
 
-const experiences = [
+const roles = [
   {
-    company: "Tech Studio",
+    company: "Luarsekolah",
+    subtitle: "Digital learning and career preparation platform",
     role: "Frontend Engineer",
-    dates: { start: "2023-03-01" },
-    description:
-      "Lead frontend development for client web applications using React, TypeScript, and Tailwind CSS. Establish component patterns, improve accessibility, and optimize core web vitals.",
+    location: "Bandung, Indonesia",
+    dates: { start: "2024-09-01" },
+    highlights: [
+      "Revamped the main product app (luarsekolah.com) using Next.js, TypeScript, and Tailwind to improve maintainability, performance, and technical SEO, increasing Core Web Vitals scores from 10-33 to 60-100.",
+      "Led development of frontend core dashboard for a B2B AI product platform using React, Vite, TypeScript, and TanStack Query/Table, enabling scalable feature development and reusable UI components pattern.",
+      "Evaluated and researched tooling and architectural approaches to support upcoming AI-based features, informing technical decisions for future product iterations.",
+    ],
+    subRoles: [
+      {
+        title: "Sub-company of Luarsekolah",
+        highlights: [
+          "Led development of interactive multi-page company profile website using Astro, React, Tailwind, and Motion, prioritizing semantic HTML, WCAG accessibility standards, technical SEO, and performance optimization.",
+          "Maintained 90-100 Core Web Vitals through performance optimization while ensuring keyboard navigation, screen reader support, and accessible components.",
+        ],
+      },
+    ],
   },
   {
-    company: "Digital Agency",
+    company: "Svara",
+    subtitle: "Media technology, broadcasting, and community audio streaming platform",
     role: "Frontend Developer",
-    dates: { start: "2021-06-01", end: "2023-02-28" },
-    description:
-      "Built responsive marketing sites and web applications for diverse clients. Collaborated with designers to implement pixel-perfect UIs and mentored junior developers on modern frontend practices.",
+    location: "Bandung, Indonesia",
+    dates: { start: "2023-05-01", end: "2024-08-01" },
+    highlights: [
+      "Maintained and extended an internal analytics dashboard using Next.js, TypeScript, React Query, and Material UI to support data-driven decision-making across internal teams.",
+      "Set up GitLab CI/CD pipelines to streamline build and deployment workflows, reducing manual release effort and improving developer productivity.",
+      "Designed and delivered a 7-week frontend internship curriculum, from Web fundamentals to React and Next.js, with practical assignments. Improved onboarding efficiency and technical readiness of new internship hires.",
+    ],
   },
   {
-    company: "Startup Incubator",
-    role: "Junior Web Developer",
-    dates: { start: "2020-01-01", end: "2021-05-31" },
-    description:
-      "Developed and maintained landing pages, implemented UI components, and supported product teams with rapid prototyping and iterative improvements.",
+    company: "Dicoding",
+    subtitle: "Indonesia's leading tech education and developer training platform",
+    role: "External Code Reviewer",
+    location: "Remote, Indonesia",
+    dates: { start: "2023-04-01", end: "2026-03-01" },
+    highlights: [
+      "Reviewed and provided solutions and suggestions to student submissions (assignments) across several courses according to specific course objectives.",
+      "Supported course forums by helping answer questions and providing technical and non-technical solutions to students facing difficulties.",
+    ],
+  },
+  {
+    company: "Redooceit",
+    subtitle: "End-to-end digital solution for managing household food waste",
+    role: "Frontend Engineer",
+    location: "Remote, Indonesia",
+    dates: { start: "2025-03-01", end: "2025-06-01" },
+    volunteer: true,
+    highlights: [
+      "Revamped the company profile and CMS using Next.js, TypeScript, Tailwind, and Sanity CMS to improve page load performance and enable non-technical teams to manage blog content from the CMS.",
+      "Developed a role-based waste management dashboard using React, Vite, TypeScript, and TanStack Query/Table to support operational workflows for admins and waste operators, improving coordination with customers.",
+      "Built the CI/CD pipeline and self-hosted GitHub Actions workflows for the entire app stack, including the company profile, CMS, and dashboard frontend/backend, improving deployment speed and reliability.",
+      "Optimized the company profile and CMS build pipeline, reducing build time from ~8-12 minutes to ~4 minutes, increasing developer iteration speed.",
+    ],
   },
 ];
 
 const education = [
   {
-    institution: "State University",
-    degree: "Bachelor of Computer Science",
-    dates: { start: "2016-09-01", end: "2020-06-01" },
+    institution: "Telkom University",
+    degree: "Bachelor's Degree — Online Learning of Informatics",
+    dates: { start: "2023-09-01" },
   },
 ];
 
-const skills = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Tailwind CSS",
-  "Astro",
-  "Accessibility",
-  "Performance",
-  "Design Systems",
-  "Git",
-  "UI/UX Collaboration",
+const skillCategories = [
+  {
+    category: "Frontend",
+    skills:
+      "HTML, CSS, Accessibility (A11y), WCAG, TypeScript, JavaScript, React, Next.js, Vite, Vue, Astro, Tailwind, Shadcn, Chakra UI, Ant Design, React Router, Redux, Zustand, TanStack, Vitest, Playwright",
+  },
+  {
+    category: "Backend",
+    skills: "Node.js, Express, SQL, ORM, Strapi CMS, Python, FastAPI, OpenAI SDK",
+  },
+  {
+    category: "DevOps & Tools",
+    skills: "Git, Figma, GitHub Actions, GitLab CI, Docker, Turborepo, Moonrepo, Linux, GCP, Nginx",
+  },
 ];
 ---
 
 <BaseLayout
   title="CV — Abdul Malik"
-  description="Professional CV of Abdul Malik, Frontend Engineer."
+  description="Professional CV of Abdul Malik, Software Engineer."
 >
   <div class="cv-page space-y-8">
     <header class="space-y-2">
       <h1 class="text-2xl md:text-3xl">Abdul Malik</h1>
-      <p class="text-muted-foreground">Frontend Engineer</p>
+      <p class="text-muted-foreground">Software Engineer</p>
       <p class="text-sm text-muted-foreground">
-        hello@up2dul.dev · up2dul.dev · Indonesia
+        malik301002@gmail.com · up2dul.dev · Indonesia
       </p>
     </header>
-
-    <Separator />
 
     <section class="space-y-3">
       <h2 class="text-xl">Summary</h2>
@@ -76,22 +112,42 @@ const skills = [
     </section>
 
     <section class="space-y-4">
-      <h2 class="text-xl">Experience</h2>
+      <h2 class="text-xl">Professional Experience</h2>
       <ul class="space-y-6">
-        {experiences.map((experience) => (
-            <li class="space-y-1">
-              <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-                <h3 class="text-lg">{experience.role}</h3>
-                <span class="text-muted-foreground text-sm">
-                  {formatDateRange(experience.dates)}
-                </span>
+        {roles.map((role) => (
+          <li class="space-y-2">
+            <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+              <div>
+                <h3 class="text-lg">{role.role} | {role.company}</h3>
+                <p class="text-muted-foreground text-sm italic">{role.subtitle}</p>
+                {role.volunteer && <span class="text-xs text-muted-foreground">Volunteer</span>}
               </div>
-              <p class="text-muted-foreground text-sm">{experience.company}</p>
-              <p class="text-pretty text-muted-foreground leading-relaxed">
-                {experience.description}
-              </p>
-            </li>
-          ))}
+              <div class="text-muted-foreground text-sm text-right">
+                <p>{role.location}</p>
+                <p>{formatDateRange(role.dates)}</p>
+              </div>
+            </div>
+            <ul class="list-disc ps-5 space-y-1">
+              {role.highlights.map((highlight) => (
+                <li class="text-pretty text-muted-foreground leading-relaxed">
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+            {role.subRoles?.map((sub) => (
+              <div class="space-y-2 ps-4 border-s-2 border-muted-foreground/20">
+                <p class="text-sm font-medium text-muted-foreground">{sub.title}</p>
+                <ul class="list-disc ps-5 space-y-1">
+                  {sub.highlights.map((highlight) => (
+                    <li class="text-pretty text-muted-foreground leading-relaxed">
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </li>
+        ))}
       </ul>
     </section>
 
@@ -99,28 +155,27 @@ const skills = [
       <h2 class="text-xl">Education</h2>
       <ul class="space-y-4">
         {education.map((item) => (
-            <li class="space-y-1">
-              <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-                <h3 class="text-lg">{item.degree}</h3>
-                <span class="text-muted-foreground text-sm">
-                  {formatDateRange(item.dates)}
-                </span>
-              </div>
-              <p class="text-muted-foreground text-sm">{item.institution}</p>
-            </li>
-          ))}
+          <li class="space-y-1">
+            <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+              <h3 class="text-lg">{item.degree}</h3>
+              <span class="text-muted-foreground text-sm">
+                {formatDateRange(item.dates)}
+              </span>
+            </div>
+            <p class="text-muted-foreground text-sm">{item.institution}</p>
+          </li>
+        ))}
       </ul>
     </section>
 
     <section class="space-y-3">
-      <h2 class="text-xl">Skills</h2>
-      <ul class="flex flex-wrap gap-2">
-        {skills.map((skill) => (
-            <li>
-              <Badge variant="secondary">{skill}</Badge>
-            </li>
-          ))}
-      </ul>
+      <h2 class="text-xl">Technical Skills</h2>
+      {skillCategories.map((cat) => (
+        <div class="space-y-1">
+          <h3 class="text-sm font-semibold text-muted-foreground">{cat.category}</h3>
+          <p class="text-pretty text-muted-foreground leading-relaxed">{cat.skills}</p>
+        </div>
+      ))}
     </section>
   </div>
 </BaseLayout>
