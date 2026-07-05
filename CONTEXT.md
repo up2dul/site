@@ -13,7 +13,7 @@ Chronological articles published as tutorials and guides. Listed in reverse-chro
 _Avoid_: Posts, articles, blog posts, notes, garden
 
 **Projects**:
-Shipped product applications (mobile or web apps). Each has a detail page with image, overview, purpose, and what Abdul did.
+Shipped product applications (mobile or web apps). Each has a detail page with images, technologies, and a markdown body describing the project.
 _Avoid_: Portfolio items, case studies, experiments, open source
 
 **CV**:
