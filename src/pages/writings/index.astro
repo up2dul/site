@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { formatDate } from "@/lib/date";
-import { calculateReadingTime } from "@/lib/reading-time";
+import { estimateReadingMinutes, formatReadingTime } from "@/lib/reading-time";
 
 const writings = await getCollection("writings", ({ data }) => !data.draft);
 
@@ -45,7 +45,7 @@ const sortedWritings = writings.sort(
                       {formatDate(writing.data.createdAt)}
                     </time>
                     <span>·</span>
-                    <span>{calculateReadingTime(writing.body ?? "")}</span>
+                    <span>{formatReadingTime(estimateReadingMinutes(writing.body))}</span>
                   </div>
                   <CardTitle className="text-lg group-hover:underline group-hover:decoration-foreground">
                     {writing.data.title}

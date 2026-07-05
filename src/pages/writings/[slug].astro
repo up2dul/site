@@ -5,7 +5,7 @@ import BaseLayout from "@/components/layouts/base-layout.astro";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { formatDate } from "@/lib/date";
-import { calculateReadingTime } from "@/lib/reading-time";
+import { estimateReadingMinutes, formatReadingTime } from "@/lib/reading-time";
 
 export const getStaticPaths = (async () => {
   const writings = await getCollection("writings", ({ data }) => !data.draft);
@@ -17,7 +17,7 @@ export const getStaticPaths = (async () => {
 
 const { writing } = Astro.props;
 const { Content } = await render(writing);
-const readingTime = calculateReadingTime(writing.body ?? "");
+const readingTime = formatReadingTime(estimateReadingMinutes(writing.body));
 ---
 
 <BaseLayout
