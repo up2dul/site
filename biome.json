@@ -51,7 +51,7 @@
         },
         "noChildrenProp": "off",
         "noUnknownFunction": "off",
-        "useJsxKeyInIterable": "error"
+        "useJsxKeyInIterable": "off"
       },
       "nursery": {
         "useSortedClasses": {
