@@ -1,11 +1,124 @@
 ---
+import { ArrowRightIcon, MailIcon } from "lucide-react";
+import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/icons";
 import BaseLayout from "@/components/layouts/base-layout.astro";
-import HomePage from "@/components/pages/home-page.astro";
+import { LinkButton } from "@/components/link-button";
+import { Separator } from "@/components/ui/separator";
+import { formatDateRange } from "@/lib/date";
+
+const experiences = [
+  {
+    company: "Tech Studio",
+    role: "Frontend Engineer",
+    dates: { start: "2023-03-01" },
+    description:
+      "Building accessible, performant web products with React and TypeScript. Collaborating with designers and backend engineers to ship features end-to-end.",
+  },
+  {
+    company: "Digital Agency",
+    role: "Frontend Developer",
+    dates: { start: "2021-06-01", end: "2023-02-28" },
+    description:
+      "Developed responsive marketing sites and web applications for clients across industries. Improved core web vitals and component reuse across projects.",
+  },
+  {
+    company: "Startup Incubator",
+    role: "Junior Web Developer",
+    dates: { start: "2020-01-01", end: "2021-05-31" },
+    description:
+      "Maintained landing pages, implemented UI components, and learned modern frontend tooling while supporting early-stage product teams.",
+  },
+];
+
+const contacts = [
+  { label: "Email", href: "mailto:hello@up2dul.dev", icon: MailIcon },
+  { label: "GitHub", href: "https://github.com/up2dul", icon: GithubIcon },
+  { label: "Twitter", href: "https://x.com/up2dul", icon: TwitterIcon },
+  {
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/up2dul",
+    icon: LinkedinIcon,
+  },
+];
 ---
 
 <BaseLayout
   title="Abdul — Frontend Engineer"
   description="Abdul's personal site — frontend engineering, design, and writings."
 >
-  <HomePage />
+  <section class="space-y-4 text-pretty">
+    <div class="space-y-1">
+      <h1 class="text-xl md:text-2xl">Abdul Malik</h1>
+      <p class="text-muted-foreground">Frontend Engineer</p>
+    </div>
+    <p class="leading-relaxed">
+      I'm a frontend engineer based in Indonesia with over 3 years of
+      experience. I craft pleasant, performant, and accessible web products with
+      intention, thinking about both user experience and code that's
+      maintainable.
+    </p>
+
+    <div class="flex flex-wrap gap-3">
+      <LinkButton href="/cv" variant="outline" client:load>
+        View CV
+      </LinkButton>
+      <LinkButton href="/projects" client:load>
+        See My Work
+        <ArrowRightIcon aria-hidden="true" />
+      </LinkButton>
+    </div>
+  </section>
+
+  <Separator className="my-8" />
+
+  <section class="space-y-4">
+    <h2 class="text-xl">Work Experience</h2>
+    <ol class="relative border-s ps-4 md:ps-6">
+      {experiences.map((experience) => (
+          <li class="ms-4 mb-8 last:mb-0 md:ms-6">
+            <span class="absolute -inset-s-1.5 mt-1.5 size-3 rounded-full border-2 border-background bg-muted-foreground md:-inset-s-2 md:size-4" />
+            <div class="space-y-1">
+              <h3 class="text-lg">{experience.role}</h3>
+              <p class="text-muted-foreground">
+                {experience.company} · {formatDateRange(experience.dates)}
+              </p>
+              <p class="text-pretty pt-1 text-muted-foreground">
+                {experience.description}
+              </p>
+            </div>
+          </li>
+        ))}
+    </ol>
+  </section>
+
+  <Separator className="my-8" />
+
+  <section class="space-y-4">
+    <h2 class="text-xl">Get in Touch</h2>
+    <p class="text-muted-foreground">
+      Open to collaborations, freelance projects, or just a friendly chat about
+      frontend engineering.
+    </p>
+    <ul class="flex flex-wrap gap-3">
+      {contacts.map((contact) => {
+          const Icon = contact.icon;
+          const isEmail = contact.href.startsWith("mailto");
+          return (
+            <li>
+              <LinkButton
+                href={contact.href}
+                target={isEmail ? undefined : "_blank"}
+                rel={isEmail ? undefined : "noreferrer"}
+                variant="outline"
+                size="sm"
+                client:load
+              >
+                <Icon aria-hidden="true" className="size-4" />
+                {contact.label}
+              </LinkButton>
+            </li>
+          );
+        })}
+    </ul>
+  </section>
 </BaseLayout>
