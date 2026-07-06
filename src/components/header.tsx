@@ -1,7 +1,5 @@
-"use client";
-
 import { MenuIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -11,6 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 import { ThemeSwitcher } from "./theme-switcher";
 
 const navLinks = [
@@ -47,32 +46,39 @@ function NavLinks({
 
 export function Header(): React.ReactElement {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-xl items-center justify-between px-4">
-        <NavLinks className="hidden md:block" />
-        <ThemeSwitcher />
-
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger
-            render={
-              <Button variant="ghost" size="icon" className="md:hidden" />
-            }
-          >
-            <MenuIcon aria-hidden="true" />
-            <span className="sr-only">Open menu</span>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-70">
-            <SheetHeader>
-              <SheetTitle>Menu</SheetTitle>
-            </SheetHeader>
-            <SheetPanel>
-              <NavLinks onNavigate={() => setOpen(false)} />
-            </SheetPanel>
-          </SheetContent>
-        </Sheet>
-      </div>
+    <header
+      className={cn(
+        "sticky top-4 z-40 mx-auto mt-4 flex h-14 w-[80vw] items-center justify-end gap-4 rounded-xl bg-background/80 px-4 backdrop-blur-md transition-all duration-300 sm:justify-between",
+        scrolled ? "shadow-sm sm:max-w-md" : "sm:max-w-xl"
+      )}
+    >
+      <NavLinks className="hidden sm:block" />
+      <ThemeSwitcher />
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetTrigger
+          render={<Button variant="ghost" size="icon" className="sm:hidden" />}
+        >
+          <MenuIcon aria-hidden="true" />
+          <span className="sr-only">Open menu</span>
+        </SheetTrigger>
+        <SheetContent side="right" className="w-70">
+          <SheetHeader>
+            <SheetTitle>Menu</SheetTitle>
+          </SheetHeader>
+          <SheetPanel>
+            <NavLinks onNavigate={() => setOpen(false)} />
+          </SheetPanel>
+        </SheetContent>
+      </Sheet>
     </header>
   );
 }
