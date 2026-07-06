@@ -12,14 +12,14 @@ export function Footer(): React.ReactElement {
         <nav aria-label="Footer">
           <ul className="flex flex-wrap items-center gap-4 text-muted-foreground text-sm">
             <li>
-              <a href="/llms.txt" className="hover:text-foreground">
+              <a href="/llms.txt" className="link-hover">
                 llms.txt
               </a>
             </li>
             <li>
               <a
                 href="/rss.xml"
-                className="inline-flex items-center gap-1.5 hover:text-foreground"
+                className="link-hover inline-flex items-center gap-1.5"
               >
                 <RssIcon aria-hidden="true" className="size-4" />
                 RSS
@@ -30,7 +30,7 @@ export function Footer(): React.ReactElement {
                 href="https://github.com/up2dul/site"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-foreground"
+                className="link-hover inline-flex items-center gap-1.5"
               >
                 <GithubIcon className="size-4" />
                 GitHub

@@ -378,4 +378,20 @@
   .writing-content a {
     @apply underline decoration-muted-foreground/60 decoration-2 underline-offset-4 hover:decoration-foreground transition-colors;
   }
+
+  .link-hover {
+    @apply relative text-foreground no-underline;
+  }
+
+  .link-hover::after {
+    content: "";
+    @apply absolute bottom-0 left-0 h-px w-full bg-current;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+
+  .link-hover:hover::after {
+    transform: scaleX(1);
+  }
 }

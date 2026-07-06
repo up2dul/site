@@ -36,3 +36,10 @@ export function formatDateRange(
 
   return `${start} - ${end}`;
 }
+
+export function formatYearRange(range: DateRange): string {
+  const startYear = toDate(range.start).getFullYear();
+  const endYear = range.end ? toDate(range.end).getFullYear() : "Current";
+
+  return `${startYear} — ${endYear}`;
+}
