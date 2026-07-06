@@ -22,7 +22,10 @@ const { data } = project;
 const { Content } = await render(project);
 ---
 
-<BaseLayout title={`${data.title} — Abdul Malik`} description={`${data.title} — a project by Abdul Malik.`}>
+<BaseLayout
+  title={`${data.title} — Abdul Malik`}
+  description={`${data.title} — a project by Abdul Malik.`}
+>
   <article class="space-y-8">
     <header class="space-y-4">
       <h1 class="text-2xl md:text-3xl">
