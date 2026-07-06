@@ -50,7 +50,7 @@ export function Header(): React.ReactElement {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-2xl items-center justify-between px-4">
+      <div className="mx-auto flex h-14 max-w-xl items-center justify-between px-4">
         <NavLinks className="hidden md:block" />
         <ThemeSwitcher />
 

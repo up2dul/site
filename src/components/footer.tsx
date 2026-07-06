@@ -6,7 +6,7 @@ const currentYear = new Date().getFullYear();
 export function Footer(): React.ReactElement {
   return (
     <footer className="w-full border-t bg-background">
-      <div className="mx-auto flex max-w-2xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-muted-foreground text-sm">&copy; {currentYear}</p>
 
         <nav aria-label="Footer">

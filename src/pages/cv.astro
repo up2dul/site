@@ -20,6 +20,18 @@ const experiences = [
     ],
   },
   {
+    company: "Redooceit",
+    url: "https://redooceit.com",
+    role: "Frontend Engineer",
+    dates: { start: "2025-03-01", end: "2025-06-01" },
+    highlights: [
+      "Revamped the company profile and CMS using Next.js, TypeScript, Tailwind, and Sanity CMS to improve page load performance and enable non-technical teams to manage blog content from the CMS.",
+      "Developed a role-based waste management dashboard using React, Vite, TypeScript, and TanStack Query/Table to support operational workflows for admins and waste operators, improving coordination with customers.",
+      "Built the CI/CD pipeline and self-hosted GitHub Actions workflows for the entire app stack, including the company profile, CMS, and dashboard frontend/backend, improving deployment speed and reliability.",
+      "Optimized the company profile and CMS build pipeline, reducing build time from ~8-12 minutes to ~4 minutes, increasing developer iteration speed.",
+    ],
+  },
+  {
     company: "Svara",
     url: "https://svara.id",
     role: "Frontend Developer",
@@ -40,25 +52,13 @@ const experiences = [
       "Supported course forums by helping answer questions and providing technical and non-technical solutions to students facing difficulties.",
     ],
   },
-  {
-    company: "Redooceit",
-    url: "https://redooceit.com",
-    role: "Frontend Engineer",
-    dates: { start: "2025-03-01", end: "2025-06-01" },
-    highlights: [
-      "Revamped the company profile and CMS using Next.js, TypeScript, Tailwind, and Sanity CMS to improve page load performance and enable non-technical teams to manage blog content from the CMS.",
-      "Developed a role-based waste management dashboard using React, Vite, TypeScript, and TanStack Query/Table to support operational workflows for admins and waste operators, improving coordination with customers.",
-      "Built the CI/CD pipeline and self-hosted GitHub Actions workflows for the entire app stack, including the company profile, CMS, and dashboard frontend/backend, improving deployment speed and reliability.",
-      "Optimized the company profile and CMS build pipeline, reducing build time from ~8-12 minutes to ~4 minutes, increasing developer iteration speed.",
-    ],
-  },
 ];
 
 const education = [
   {
     institution: "Telkom University",
     url: "https://telkomuniversity.ac.id",
-    degree: "Bachelor's Degree — Online Learning of Informatics",
+    degree: "Bachelor's Degree of Informatics",
     dates: { start: "2023-09-01" },
   },
 ];
@@ -91,7 +91,7 @@ const skillCategories = [
       <h1 class="text-2xl md:text-3xl">Abdul Malik</h1>
       <p class="text-muted-foreground">Software Engineer</p>
       <p class="text-sm text-muted-foreground">
-        malik301002@gmail.com · up2dul.dev · Indonesia
+        hello@up2dul.dev · up2dul.dev · Indonesia
       </p>
     </header>
 
@@ -119,7 +119,7 @@ const skillCategories = [
                 href={experience.url}
                 target="_blank"
                 rel="noreferrer"
-                class="link-hover inline-flex w-fit items-center gap-1 text-muted-foreground text-sm"
+                class="link-hover inline-flex w-fit items-center gap-1 text-sm"
               >
                 {experience.company}
                 <ArrowUpRightIcon aria-hidden="true" className="size-3.5" />
@@ -151,7 +151,7 @@ const skillCategories = [
                 href={item.url}
                 target="_blank"
                 rel="noreferrer"
-                class="link-hover inline-flex w-fit items-center gap-1 text-muted-foreground text-sm"
+                class="link-hover inline-flex w-fit items-center gap-1 text-sm"
               >
                 {item.institution}
                 <ArrowUpRightIcon aria-hidden="true" className="size-3.5" />
