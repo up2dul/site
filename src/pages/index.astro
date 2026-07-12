@@ -59,7 +59,7 @@ const contacts = [
       <h1 class="text-xl md:text-2xl">Abdul Malik</h1>
       <p class="text-muted-foreground">Frontend Engineer</p>
     </div>
-    <p class="leading-relaxed">
+    <p class="leading-relaxed text-muted-foreground">
       I'm a frontend engineer based in Indonesia with over 3 years of
       experience. I craft pleasant, performant, and accessible web products with
       intention, thinking about both user experience and code that's
@@ -72,7 +72,7 @@ const contacts = [
         View CV
       </LinkButton>
       <LinkButton href="/projects" client:load>
-        See My Work
+        View Projects
         <ArrowRightIcon aria-hidden="true" />
       </LinkButton>
     </div>
@@ -82,6 +82,7 @@ const contacts = [
         src={scenery}
         alt="Scenery illustration"
         class="object-cover object-bottom w-full h-full"
+        loading="eager"
       />
     </div>
   </section>
