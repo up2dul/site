@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "./typeset.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -305,78 +306,13 @@
 }
 
 @layer components {
-  .writing-content {
-    @apply text-foreground;
-  }
-
-  .writing-content h1,
-  .writing-content h2,
-  .writing-content h3,
-  .writing-content h4,
-  .writing-content h5,
-  .writing-content h6 {
-    @apply font-heading font-semibold text-foreground mt-8 mb-3;
-  }
-
-  .writing-content h1 {
-    @apply text-2xl;
-  }
-
-  .writing-content h2 {
-    @apply text-xl;
-  }
-
-  .writing-content h3 {
-    @apply text-lg;
-  }
-
-  .writing-content p {
-    @apply leading-relaxed;
-  }
-
-  .writing-content ul,
-  .writing-content ol {
-    @apply pl-6 space-y-1;
-  }
-
-  .writing-content ul {
-    @apply list-disc;
-  }
-
-  .writing-content ol {
-    @apply list-decimal;
-  }
-
-  .writing-content blockquote {
-    @apply border-s-4 border-border pl-4 italic text-muted-foreground;
-  }
-
-  .writing-content pre {
-    @apply rounded-lg bg-code p-4 overflow-x-auto text-sm;
-  }
-
-  .writing-content code {
-    @apply font-mono text-sm;
-  }
-
-  .writing-content pre code {
-    @apply bg-transparent text-code-foreground;
-  }
-
-  .writing-content :not(pre) > code {
-    @apply rounded bg-code px-1.5 py-0.5 text-code-foreground;
-  }
-
-  .writing-content img {
-    @apply rounded-lg border;
-  }
-
-  .writing-content hr {
-    @apply border-border my-8;
-  }
-
-  .writing-content a {
-    @apply underline decoration-muted-foreground/60 decoration-2 underline-offset-4 hover:decoration-foreground transition-colors;
+  .typeset-docs {
+    --typeset-font-body: var(--font-sans);
+    --typeset-font-heading: var(--font-heading);
+    --typeset-font-mono: var(--font-mono);
+    --typeset-size: 15px;
+    --typeset-leading: 1.75;
+    --typeset-flow: 1.25em;
   }
 
   .link-hover {
