@@ -26,9 +26,9 @@ In August 2023, there was another code linter/formatter tool released, it's name
 
 ## What is this?
 
-> **Biome is a**[**fast formatter**for _JavaScript_](https://github.com/biomejs/biome/tree/main/benchmark#formatting), _TypeScript_, _JSX_, and _JSON_ that scores [**97% compatibility with _Prettier_**](https://console.algora.io/challenges/prettier), [**saving CI and developer time**.](https://console.algora.io/challenges/prettier)
+> **Biome is a** [**fast formatter** for _JavaScript_](https://github.com/biomejs/biome/tree/main/benchmark#formatting), _TypeScript_, _JSX_, and _JSON_ that scores [**97% compatibility with _Prettier_**](https://console.algora.io/challenges/prettier), [**saving CI and developer time**.](https://console.algora.io/challenges/prettier)
 >
-> **Biome is a**[**performant linter**](https://github.com/biomejs/biome/tree/main/benchmark#linting) for _JavaScript_, _TypeScript_, and _JSX_ that features [**more than 200 rules**](https://biomejs.dev/linter/rules/) from ESLint, typescript-eslint, and [other sources](https://github.com/biomejs/biome/discussions/3).
+> **Biome is a** [**performant linter**](https://github.com/biomejs/biome/tree/main/benchmark#linting) for _JavaScript_, _TypeScript_, and _JSX_ that features [**more than 200 rules**](https://biomejs.dev/linter/rules/) from ESLint, typescript-eslint, and [other sources](https://github.com/biomejs/biome/discussions/3).
 
 That's two main points that I quote from the [official site](https://biomejs.dev). So basically Biome is a JavaScript/TypeScript linter and formatter same as ESLint and Prettier, yeah so Biome alone does a thing that ESLint and Prettier do, and it is built on **Rust**.
 
