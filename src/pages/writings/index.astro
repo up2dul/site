@@ -1,14 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "@/components/layouts/base-layout.astro";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardPanel,
-  CardTitle,
-} from "@/components/ui/card";
 import { formatDate } from "@/lib/date";
 import { estimateReadingMinutes, formatReadingTime } from "@/lib/reading-time";
 
@@ -27,44 +19,28 @@ const sortedWritings = writings.sort(
     <section class="space-y-2">
       <h1 class="text-2xl md:text-3xl">Writings</h1>
       <p class="text-muted-foreground">
-        Tutorials, guides, and thoughts on frontend engineering.
+        Addy Osmani once said "Write about what you learn. It pushes you to
+        understand topics better."
       </p>
     </section>
 
-    <ul class="grid gap-4">
+    <ul class="space-y-6">
       {sortedWritings.map((writing) => (
-          <li>
-            <a
-              href={`/writings/${writing.id}`}
-              class="group block hover:no-underline"
-            >
-              <Card className="transition-shadow hover:shadow-sm">
-                <CardHeader>
-                  <div class="flex flex-wrap items-center gap-2 text-muted-foreground text-sm">
-                    <time datetime={writing.data.createdAt.toISOString()}>
-                      {formatDate(writing.data.createdAt)}
-                    </time>
-                    <span>·</span>
-                    <span>{formatReadingTime(estimateReadingMinutes(writing.body))}</span>
-                  </div>
-                  <CardTitle className="text-lg group-hover:underline group-hover:decoration-foreground">
-                    {writing.data.title}
-                  </CardTitle>
-                  <CardDescription>{writing.data.subtitle}</CardDescription>
-                </CardHeader>
-                <CardPanel>
-                  <ul class="flex flex-wrap gap-1.5">
-                    {writing.data.tags.map((tag) => (
-                      <li>
-                        <Badge variant="secondary" size="sm">
-                          {tag}
-                        </Badge>
-                      </li>
-                    ))}
-                  </ul>
-                </CardPanel>
-              </Card>
-            </a>
+          <li class="grid grid-cols-1 gap-1 sm:grid-cols-[120px_1fr] sm:gap-4">
+            <span class="text-muted-foreground text-sm">
+              {formatDate(writing.data.createdAt)}
+            </span>
+            <div class="space-y-1">
+              <a
+                href={`/writings/${writing.id}`}
+                class="link-hover inline-flex w-fit items-center"
+              >
+                {writing.data.title}
+              </a>
+              <p class="text-muted-foreground text-sm">
+                {formatReadingTime(estimateReadingMinutes(writing.body))}
+              </p>
+            </div>
           </li>
         ))}
     </ul>
