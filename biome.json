@@ -27,10 +27,10 @@
     "rules": {
       "preset": "recommended",
       "a11y": {
-        "noSvgWithoutTitle": "off",
-        "useKeyWithClickEvents": "off",
-        "useSemanticElements": "off",
-        "useValidAnchor": "off"
+        "noSvgWithoutTitle": "warn",
+        "useKeyWithClickEvents": "warn",
+        "useSemanticElements": "warn",
+        "useValidAnchor": "warn"
       },
       "complexity": {
         "noBannedTypes": "off",
