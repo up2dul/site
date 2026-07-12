@@ -8,14 +8,7 @@ import { LinkButton } from "@/components/link-button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { formatDate } from "@/lib/date";
-
-const imageModules = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/projects/*.{webp,png,jpg}",
-  { eager: true }
-);
-
-const resolveImage = (filename: string): string =>
-  imageModules[`/src/assets/projects/${filename}`]?.default?.src ?? "";
+import { resolveProjectImageSrc } from "@/lib/project-images";
 
 export const getStaticPaths = (async () => {
   const projects = await getCollection("projects", ({ data }) => !data.draft);
@@ -56,7 +49,7 @@ const { Content } = await render(project);
         {data.images.map((image, index) => (
             <li class={index === 0 ? "sm:col-span-2" : ""}>
               <img
-                src={resolveImage(image)}
+                src={resolveProjectImageSrc(image)}
                 alt={`${data.title} screenshot ${index + 1}`}
                 class="w-full rounded-lg border object-cover"
                 loading={index === 0 ? "eager" : "lazy"}

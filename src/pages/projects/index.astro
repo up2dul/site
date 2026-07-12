@@ -3,14 +3,7 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "@/components/layouts/base-layout.astro";
 import { formatDate } from "@/lib/date";
-
-const imageModules = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/projects/*.{webp,png,jpg}",
-  { eager: true }
-);
-
-const resolveImage = (filename: string): ImageMetadata | undefined =>
-  imageModules[`/src/assets/projects/${filename}`]?.default;
+import { resolveProjectImage } from "@/lib/project-images";
 
 const projects = await getCollection("projects", ({ data }) => !data.draft);
 ---
@@ -29,7 +22,7 @@ const projects = await getCollection("projects", ({ data }) => !data.draft);
 
     <ul class="grid gap-8 md:grid-cols-2">
       {projects.map((project) => {
-          const thumbnail = resolveImage(project.data.images[0]);
+          const thumbnail = resolveProjectImage(project.data.images[0]);
           return (
             <li>
               <a
