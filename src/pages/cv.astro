@@ -4,9 +4,6 @@ import BaseLayout from "@/components/layouts/base-layout.astro";
 import { Separator } from "@/components/ui/separator";
 import { formatDateRange } from "@/lib/date";
 
-const summary =
-  "Software engineer with over 3 years of experience building accessible, performant web products. Comfortable working across the UI stack from design systems to deployment, with a strong focus on user experience and clean code.";
-
 const experiences = [
   {
     company: "Luarsekolah",
@@ -96,13 +93,6 @@ const skillCategories = [
     </header>
 
     <Separator />
-
-    <section class="space-y-3">
-      <h2 class="text-xl">Summary</h2>
-      <p class="text-pretty leading-relaxed text-muted-foreground">
-        {summary}
-      </p>
-    </section>
 
     <section class="space-y-4">
       <h2 class="text-xl">Experience</h2>
