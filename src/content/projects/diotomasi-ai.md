@@ -1,7 +1,9 @@
 ---
 title: Diotomasi.ai
 images:
-  - image_5206ca.png
+  - diotomasi-ai-1.webp
+  - diotomasi-ai-2.webp
+  - diotomasi-ai-3.webp
 technologies:
   - React
   - Vite

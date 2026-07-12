@@ -1,7 +1,9 @@
 ---
 title: Qalbwise
 images:
-  - image_482944.png
+  - qalbwise-1.webp
+  - qalbwise-2.webp
+  - qalbwise-3.webp
 technologies:
   - Monorepo
   - OpenAI

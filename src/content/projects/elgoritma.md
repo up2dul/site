@@ -1,7 +1,9 @@
 ---
 title: Elgoritma
 images:
-  - image_5206a8.png
+  - elgoritma-1.webp
+  - elgoritma-2.webp
+  - elgoritma-3.webp
 technologies:
   - Astro
   - React

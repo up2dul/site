@@ -1,7 +1,9 @@
 ---
 title: Redooceit
 images:
-  - image_520703.png
+  - redooceit-1.webp
+  - redooceit-2.webp
+  - redooceit-3.webp
 technologies:
   - React
   - Next.js
