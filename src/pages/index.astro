@@ -38,6 +38,18 @@ const experiences = [
   },
 ];
 
+const nowActivities = [
+  {
+    label: "Studying",
+    detail: "Pursuing a bachelor's degree in Informatics",
+    link: { text: "Telkom University", href: "https://telkomuniversity.ac.id" },
+  },
+  {
+    label: "Opportunity",
+    detail: "Available to new full-time or part-time opportunities",
+  },
+];
+
 const contacts = [
   { label: "Email", href: "mailto:hello@up2dul.dev" },
   { label: "GitHub", href: "https://github.com/up2dul", username: "up2dul" },
@@ -51,7 +63,6 @@ const contacts = [
 ---
 
 <BaseLayout
-  title="Abdul — Frontend Engineer"
   description="Abdul's personal site — frontend engineering, design, and writings."
 >
   <section class="space-y-4 text-pretty">
@@ -59,7 +70,7 @@ const contacts = [
       <h1 class="text-xl md:text-2xl">Abdul Malik</h1>
       <p class="text-muted-foreground">Frontend Engineer</p>
     </div>
-    <p class="leading-relaxed text-muted-foreground">
+    <p class="leading-relaxed text-muted-foreground text-sm">
       I'm a frontend engineer based in Indonesia with over 3 years of
       experience. I craft pleasant, performant, and accessible web products with
       intention, thinking about both user experience and code that's
@@ -112,6 +123,15 @@ const contacts = [
             </div>
           </li>
         ))}
+    </ul>
+  </section>
+
+  <Separator className="my-8" />
+
+  <section class="space-y-6">
+    <h2 class="text-xl">Now</h2>
+    <ul class="space-y-3 list-disc list-inside text-sm">
+      {nowActivities.map((activity) => <li>{activity.detail}</li>)}
     </ul>
   </section>
 
