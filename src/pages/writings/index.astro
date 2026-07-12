@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/components/layouts/base-layout.astro";
+import { formatDate } from "@/lib/date";
+import { estimateReadingMinutes, formatReadingTime } from "@/lib/reading-time";
+
+const writings = await getCollection("writings", ({ data }) => !data.draft);
+
+const sortedWritings = writings.sort(
+  (a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime()
+);
+---
+
+<BaseLayout
+  title="Writings | Abdul Malik"
+  description="Tutorials, guides, and thoughts on frontend engineering by Abdul Malik."
+>
+  <div class="space-y-8">
+    <section class="space-y-2">
+      <h1 class="text-2xl md:text-3xl">Writings</h1>
+      <p class="text-muted-foreground">
+        Addy Osmani once said "Write about what you learn. It pushes you to
+        understand topics better."
+      </p>
+    </section>
+
+    <ul class="space-y-6">
+      {sortedWritings.map((writing) => (
+          <li class="grid grid-cols-1 gap-1 sm:grid-cols-[120px_1fr] sm:gap-4">
+            <span class="text-muted-foreground text-sm">
+              {formatDate(writing.data.createdAt)}
+            </span>
+            <div class="space-y-1">
+              <h2 class="font-normal font-sans text-sm">
+                <a
+                  href={`/writings/${writing.id}`}
+                  class="link-hover inline-flex w-fit items-center"
+                >
+                  {writing.data.title}
+                </a>
+              </h2>
+              <p class="text-muted-foreground text-sm">
+                {formatReadingTime(estimateReadingMinutes(writing.body))}
+              </p>
+            </div>
+          </li>
+        ))}
+    </ul>
+  </div>
+</BaseLayout>

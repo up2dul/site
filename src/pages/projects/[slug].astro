@@ -1,0 +1,96 @@
+---
+import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import { ExternalLinkIcon } from "lucide-react";
+import { GithubIcon } from "@/components/icons";
+import BaseLayout from "@/components/layouts/base-layout.astro";
+import { LinkButton } from "@/components/link-button";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { formatDate } from "@/lib/date";
+import { resolveProjectImageSrc } from "@/lib/project-images";
+
+export const getStaticPaths = (async () => {
+  const projects = await getCollection("projects", ({ data }) => !data.draft);
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+const { data } = project;
+const { Content } = await render(project);
+---
+
+<BaseLayout
+  title={`${data.title} | Abdul Malik`}
+  description={`${data.title} — a project by Abdul Malik.`}
+>
+  <article class="space-y-8">
+    <header class="space-y-4">
+      <h1 class="text-2xl md:text-3xl">
+        {data.title}
+      </h1>
+      <p class="text-muted-foreground">
+        Accomplished in {formatDate(data.accomplishedAt)}
+      </p>
+      <ul class="flex flex-wrap gap-2">
+        {data.technologies.map((tech) => (
+            <li>
+              <Badge variant="secondary">{tech}</Badge>
+            </li>
+          ))}
+      </ul>
+    </header>
+
+    <section class="space-y-3">
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {data.images.map((image, index) => (
+            <li class={index === 0 ? "sm:col-span-2" : ""}>
+              <img
+                src={resolveProjectImageSrc(image)}
+                alt={`${data.title} screenshot ${index + 1}`}
+                class="w-full rounded-lg border object-cover"
+                loading={index === 0 ? "eager" : "lazy"}
+              />
+            </li>
+          ))}
+      </ul>
+    </section>
+
+    <div class="flex flex-wrap gap-3">
+      {data.appLink && (
+          <LinkButton
+            href={data.appLink}
+            target="_blank"
+            rel="noreferrer"
+            client:load
+          >
+            Visit App
+            <ExternalLinkIcon aria-hidden="true" />
+          </LinkButton>
+        )}
+      {data.repoLink && (
+          <LinkButton
+            href={data.repoLink}
+            target="_blank"
+            rel="noreferrer"
+            variant="outline"
+            client:load
+          >
+            <GithubIcon aria-hidden="true" />
+            View Source
+          </LinkButton>
+        )}
+    </div>
+
+    <Separator />
+
+    <div
+      class="typeset typeset-docs space-y-4 text-pretty leading-relaxed text-foreground"
+    >
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

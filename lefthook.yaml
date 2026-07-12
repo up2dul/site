@@ -1,0 +1,22 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "**/*.{ts,tsx,js,jsx,mjs,css,json,astro}"
+      run: pnpm exec biome format --write {staged_files}
+      stage_fixed: true
+
+    check:
+      glob: "**/*.{ts,tsx,js,jsx,mjs,css,json,astro}"
+      run: pnpm exec biome check --write --unsafe {staged_files}
+      stage_fixed: true
+
+    lint:
+      glob: "**/*.{ts,tsx}"
+      run: pnpm exec biome lint --write {staged_files}
+      stage_fixed: true
+
+commit-msg:
+  commands:
+    lint-commit-message:
+      run: pnpm commitlint --edit {1}

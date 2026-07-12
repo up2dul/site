@@ -1,0 +1,186 @@
+---
+import { ArrowUpRightIcon } from "lucide-react";
+import BaseLayout from "@/components/layouts/base-layout.astro";
+import { Separator } from "@/components/ui/separator";
+import { formatDateRange } from "@/lib/date";
+
+const experiences = [
+  {
+    company: "Luarsekolah",
+    url: "https://luarsekolah.com",
+    role: "Frontend Engineer",
+    dates: { start: "2024-09-01" },
+    highlights: [
+      "Revamped the main product app (`luarsekolah.com`) using Next.js, TypeScript, and Tailwind to improve maintainability, performance, and technical SEO, increasing Core Web Vitals scores from 10-33 to 60-100.",
+      "Led development of frontend core dashboard for a B2B AI product platform using React, Vite, TypeScript, and TanStack Query/Table, enabling scalable feature development and reusable UI components pattern.",
+      "Evaluated and researched tooling and architectural approaches to support upcoming AI-based features, informing technical decisions for future product iterations.",
+    ],
+  },
+  {
+    company: "Redooceit",
+    url: "https://redooceit.com",
+    role: "Frontend Engineer",
+    dates: { start: "2025-03-01", end: "2025-06-01" },
+    highlights: [
+      "Revamped the company profile and CMS using Next.js, TypeScript, Tailwind, and Sanity CMS to improve page load performance and enable non-technical teams to manage blog content from the CMS.",
+      "Developed a role-based waste management dashboard using React, Vite, TypeScript, and TanStack Query/Table to support operational workflows for admins and waste operators, improving coordination with customers.",
+      "Built the CI/CD pipeline and self-hosted GitHub Actions workflows for the entire app stack, including the company profile, CMS, and dashboard frontend/backend, improving deployment speed and reliability.",
+      "Optimized the company profile and CMS build pipeline, reducing build time from ~8-12 minutes to ~4 minutes, increasing developer iteration speed.",
+    ],
+  },
+  {
+    company: "Svara",
+    url: "https://svara.id",
+    role: "Frontend Developer",
+    dates: { start: "2023-05-01", end: "2024-08-01" },
+    highlights: [
+      "Maintained and extended an internal analytics dashboard using Next.js, TypeScript, React Query, and Material UI to support data-driven decision-making across internal teams.",
+      "Set up GitLab CI/CD pipelines to streamline build and deployment workflows, reducing manual release effort and improving developer productivity.",
+      "Designed and delivered a 7-week frontend internship curriculum, from Web fundamentals to React and Next.js, with practical assignments. Improved onboarding efficiency and technical readiness of new internship hires.",
+    ],
+  },
+  {
+    company: "Dicoding",
+    url: "https://dicoding.com",
+    role: "External Code Reviewer",
+    dates: { start: "2023-04-01", end: "2026-03-01" },
+    highlights: [
+      "Reviewed and provided solutions and suggestions to student submissions (assignments) across several courses according to specific course objectives.",
+      "Supported course forums by helping answer questions and providing technical and non-technical solutions to students facing difficulties.",
+    ],
+  },
+];
+
+const education = [
+  {
+    institution: "Telkom University",
+    url: "https://telkomuniversity.ac.id",
+    degree: "Bachelor's Degree of Informatics",
+    dates: { start: "2023-09-01" },
+  },
+];
+
+const skillCategories = [
+  {
+    category: "Frontend",
+    skills:
+      "HTML, CSS, Accessibility (A11y), WCAG, TypeScript, JavaScript, React, Next.js, Vite, Vue, Astro, Tailwind, Shadcn, Chakra UI, Ant Design, React Router, Redux, Zustand, TanStack, Vitest, Playwright",
+  },
+  {
+    category: "Backend",
+    skills:
+      "Node.js, Express, SQL, ORM, Strapi CMS, Python, FastAPI, OpenAI SDK",
+  },
+  {
+    category: "DevOps & Tools",
+    skills:
+      "Git, Figma, GitHub Actions, GitLab CI, Docker, Turborepo, Moonrepo, Linux, GCP, Nginx",
+  },
+];
+---
+
+<BaseLayout
+  title="CV | Abdul Malik"
+  description="Professional CV of Abdul Malik, Software Engineer."
+>
+  <div class="cv-page space-y-8">
+    <header class="space-y-2">
+      <h1 class="text-2xl md:text-3xl">Abdul Malik</h1>
+      <p class="text-muted-foreground">Frontend Engineer</p>
+      <p class="text-sm text-muted-foreground">
+        hello@up2dul.dev · up2dul.dev · Indonesia
+      </p>
+    </header>
+
+    <Separator />
+
+    <section class="space-y-4">
+      <h2 class="text-xl">Experience</h2>
+      <ul class="space-y-6">
+        {experiences.map((experience) => (
+            <li class="space-y-1">
+              <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+                <h3 class="text-lg">{experience.role}</h3>
+                <span class="text-muted-foreground text-sm">
+                  {formatDateRange(experience.dates)}
+                </span>
+              </div>
+              <a
+                href={experience.url}
+                target="_blank"
+                rel="noreferrer"
+                class="link-hover inline-flex w-fit items-center gap-1 text-sm"
+              >
+                {experience.company}
+                <ArrowUpRightIcon aria-hidden="true" className="size-3.5" />
+                <span class="sr-only">(opens in new tab)</span>
+              </a>
+              <ul class="list-disc space-y-1 ps-5">
+                {experience.highlights.map((highlight) => (
+                  <li class="text-pretty text-muted-foreground leading-relaxed">
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+      </ul>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-xl">Education</h2>
+      <ul class="space-y-4">
+        {education.map((item) => (
+            <li class="space-y-1">
+              <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+                <h3 class="text-lg">{item.degree}</h3>
+                <span class="text-muted-foreground text-sm">
+                  {formatDateRange(item.dates)}
+                </span>
+              </div>
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                class="link-hover inline-flex w-fit items-center gap-1 text-sm"
+              >
+                {item.institution}
+                <ArrowUpRightIcon aria-hidden="true" className="size-3.5" />
+                <span class="sr-only">(opens in new tab)</span>
+              </a>
+            </li>
+          ))}
+      </ul>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-xl">Skills</h2>
+      {skillCategories.map((cat) => (
+          <div class="space-y-1">
+            <h3 class="font-semibold">{cat.category}</h3>
+            <p class="text-pretty text-muted-foreground leading-relaxed">
+              {cat.skills}
+            </p>
+          </div>
+        ))}
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+@media print {
+  .cv-page {
+    max-width: none;
+    padding: 0;
+  }
+
+  .cv-page section {
+    break-inside: avoid;
+  }
+
+  .cv-page h1,
+  .cv-page h2 {
+    break-after: avoid;
+  }
+}
+</style>

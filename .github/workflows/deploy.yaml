@@ -4,12 +4,14 @@ on:
     branches:
       - main
     paths-ignore:
-      - '.commitlintrc.cjs'
-      - '.eslintrc.cjs'
+      - '.agents/**'
+      - '.commitlint.config.ts'
       - '.gitignore'
-      - '.prettierignore'
-      - '.prettierrc.cjs'
+      - '.vscode/**'
+      - 'AGENTS.md'
       - 'README.md'
+      - 'biome.json'
+      - 'skills-lock.json'
 
 jobs:
   deploy:
@@ -17,28 +19,20 @@ jobs:
     permissions:
       contents: read
       deployments: write
-    strategy:
-      matrix:
-        node-version: [20]
     steps:
-      - name: 🛎️ Checkout
-        uses: actions/checkout@v4
-      # Install pnpm
-      - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
+      - name: Checkout
+        uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+        name: Install pnpm
         with:
-          version: 9
-      # Build
-      - name: 🔨 Build
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
-      - run: echo "PUBLIC_CLOUDINARY_CLOUD_NAME=${{ secrets.PUBLIC_CLOUDINARY_CLOUD_NAME }}" >> .env
-      - run: pnpm install
-      - run: pnpm build 
+          version: 10
+          cache: true
+      - name: Install web dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build web
+        run: pnpm build
       # Deploy
-      - name: 🌎 Deploy to Cloudflare Pages
+      - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
