@@ -99,34 +99,36 @@ const ogImage = image.startsWith("http") ? image : new URL(image, siteUrl).href;
 
     <!-- View Transitions -->
     <style is:inline>
-    @keyframes fade-blur-in {
-      from {
-        opacity: 0;
-        filter: blur(12px);
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes fade-blur-in {
+        from {
+          opacity: 0;
+          filter: blur(12px);
+        }
+        to {
+          opacity: 1;
+          filter: blur(0);
+        }
       }
-      to {
-        opacity: 1;
-        filter: blur(0);
-      }
-    }
 
-    @keyframes fade-blur-out {
-      from {
-        opacity: 1;
-        filter: blur(0);
+      @keyframes fade-blur-out {
+        from {
+          opacity: 1;
+          filter: blur(0);
+        }
+        to {
+          opacity: 0;
+          filter: blur(12px);
+        }
       }
-      to {
-        opacity: 0;
-        filter: blur(12px);
+
+      ::view-transition-old(main-content) {
+        animation: fade-blur-out 0.5s ease-in-out;
       }
-    }
 
-    ::view-transition-old(main-content) {
-      animation: fade-blur-out 0.5s ease-in-out;
-    }
-
-    ::view-transition-new(main-content) {
-      animation: fade-blur-in 0.5s ease-in-out;
+      ::view-transition-new(main-content) {
+        animation: fade-blur-in 0.5s ease-in-out;
+      }
     }
 
     /* Root stays static during transitions */
@@ -208,6 +210,7 @@ const ogImage = image.startsWith("http") ? image : new URL(image, siteUrl).href;
   <body
     class="flex min-h-dvh flex-col bg-background font-sans text-foreground antialiased"
   >
+    <a href="#main" class="skip-link"> Skip to content </a>
     <Header client:load transition:persist />
     <div id={PORTAL_ROOT_ID} transition:persist></div>
     <div
@@ -215,7 +218,11 @@ const ogImage = image.startsWith("http") ? image : new URL(image, siteUrl).href;
       transition:animate="none"
       class="flex flex-1 flex-col bg-background"
     >
-      <main class="mx-auto w-full max-w-xl flex-1 px-4 pt-12 pb-20">
+      <main
+        id="main"
+        tabindex="-1"
+        class="mx-auto w-full max-w-xl flex-1 px-4 pt-12 pb-20"
+      >
         <slot />
       </main>
     </div>

@@ -34,7 +34,7 @@ const projects = await getCollection("projects", ({ data }) => !data.draft);
             <li>
               <a
                 href={`/projects/${project.id}`}
-                class="group block transition-opacity duration-300 hover:opacity-80"
+                class="group block rounded-lg transition-all duration-300 hover:opacity-80"
               >
                 <div class="flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg bg-accent/50 p-6">
                   {thumbnail && (
@@ -49,7 +49,7 @@ const projects = await getCollection("projects", ({ data }) => !data.draft);
                   )}
                 </div>
                 <div class="mt-4 flex items-baseline justify-between">
-                  <h3 class="font-medium text-xl">{project.data.title}</h3>
+                  <h2 class="font-medium text-xl">{project.data.title}</h2>
                   <p class="text-muted-foreground text-sm">
                     {formatDate(project.data.accomplishedAt)}
                   </p>

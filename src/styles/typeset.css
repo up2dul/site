@@ -119,9 +119,11 @@
       text-decoration-color: currentColor;
     }
     &:where(a:focus-visible) {
-      outline: 2px solid var(--color-ring, currentColor);
-      outline-offset: 2px;
+      outline: none;
       border-radius: 0.125em;
+      box-shadow:
+        0 0 0 1px var(--color-background),
+        0 0 0 calc(2px + 1px) var(--color-ring);
     }
     &:where(:is(h1, h2, h3, h4, h5, h6) :is(a)) {
       font-weight: inherit;

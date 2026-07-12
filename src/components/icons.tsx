@@ -2,7 +2,7 @@ import type { SVGProps } from "react";
 
 function createIcon(
   path: React.ReactNode,
-  title: string
+  _title: string
 ): React.FC<SVGProps<SVGSVGElement>> {
   return function Icon(props: SVGProps<SVGSVGElement>): React.ReactElement {
     return (
@@ -10,12 +10,10 @@ function createIcon(
         aria-hidden="true"
         fill="currentColor"
         focusable="false"
-        role="img"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
       >
-        <title>{title}</title>
         {path}
       </svg>
     );

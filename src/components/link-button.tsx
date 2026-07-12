@@ -18,6 +18,9 @@ export function LinkButton({
   return (
     <Button render={<a href={href} target={target} rel={rel} />} {...props}>
       {children}
+      {target === "_blank" && (
+        <span className="sr-only">(opens in new tab)</span>
+      )}
     </Button>
   );
 }

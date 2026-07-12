@@ -46,7 +46,7 @@ const nowActivities = [
   },
   {
     label: "Opportunity",
-    detail: "Available to new full-time or part-time opportunities",
+    detail: "Available for new full-time or part-time opportunities",
   },
 ];
 
@@ -118,6 +118,7 @@ const contacts = [
               >
                 {experience.company}
                 <ArrowUpRightIcon aria-hidden="true" className="size-3.5" />
+                <span class="sr-only">(opens in new tab)</span>
               </a>
               <p class="text-muted-foreground text-sm">{experience.type}</p>
             </div>
@@ -153,6 +154,7 @@ const contacts = [
               >
                 {contact.username ?? contact.href.replace("mailto:", "")}
                 <ArrowUpRightIcon aria-hidden="true" className="size-3.5" />
+                {!isEmail && <span class="sr-only">(opens in new tab)</span>}
               </a>
             </li>
           );

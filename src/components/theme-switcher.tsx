@@ -39,7 +39,6 @@ export function ThemeSwitcher({
     >
       <SelectButton
         aria-label="Select theme"
-        aria-controls={popupId}
         className={cn("w-auto min-w-0 gap-1.5 ps-2.5 pe-2", className)}
       >
         {mounted ? (
