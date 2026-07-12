@@ -19,3 +19,7 @@ _Avoid_: Portfolio items, case studies, experiments, open source
 **CV**:
 A separate page displaying professional resume. Rendered as HTML, not a PDF download.
 _Avoid_: Resume, curriculum vitae
+
+**Now**:
+A curated snapshot of Abdul's current activities — studying, learning, working on, or reading. Updated manually when significant changes occur.
+_Avoid_: Status, updates, timeline, log
