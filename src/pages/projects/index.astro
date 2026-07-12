@@ -1,7 +1,16 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "@/components/layouts/base-layout.astro";
-import { Card, CardHeader, CardPanel, CardTitle } from "@/components/ui/card";
+import { formatDate } from "@/lib/date";
+
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/projects/*.{webp,png,jpg}",
+  { eager: true }
+);
+
+const resolveImage = (filename: string): ImageMetadata | undefined =>
+  imageModules[`/src/assets/projects/${filename}`]?.default;
 
 const projects = await getCollection("projects", ({ data }) => !data.draft);
 ---
@@ -14,37 +23,41 @@ const projects = await getCollection("projects", ({ data }) => !data.draft);
     <section class="space-y-2">
       <h1 class="text-2xl md:text-3xl">Projects</h1>
       <p class="text-muted-foreground">
-        A selection of web and mobile applications I have worked on.
+        A selection of projects that I have worked on.
       </p>
     </section>
 
-    <ul class="grid gap-6 sm:grid-cols-2">
-      {projects.map((project) => (
-          <li>
-            <a
-              href={`/projects/${project.id}`}
-              class="group block hover:no-underline"
-            >
-              <Card className="overflow-hidden transition-shadow hover:shadow-md">
-                <CardPanel className="p-0">
-                  <img
-                    src={project.data.images[0]}
-                    alt={project.data.title}
-                    class="aspect-video w-full object-cover"
-                    loading="lazy"
-                    width={600}
-                    height={340}
-                  />
-                </CardPanel>
-                <CardHeader>
-                  <CardTitle className="text-lg group-hover:underline group-hover:decoration-foreground">
-                    {project.data.title}
-                  </CardTitle>
-                </CardHeader>
-              </Card>
-            </a>
-          </li>
-        ))}
+    <ul class="grid gap-8 md:grid-cols-2">
+      {projects.map((project) => {
+          const thumbnail = resolveImage(project.data.images[0]);
+          return (
+            <li>
+              <a
+                href={`/projects/${project.id}`}
+                class="group block transition-opacity duration-300 hover:opacity-80"
+              >
+                <div class="flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg bg-accent/50 p-6">
+                  {thumbnail && (
+                    <Image
+                      src={thumbnail}
+                      alt={project.data.title}
+                      class="h-auto w-full max-w-full rounded-md object-cover transition-transform duration-300 group-hover:scale-105"
+                      width={600}
+                      height={340}
+                      loading="lazy"
+                    />
+                  )}
+                </div>
+                <div class="mt-4 flex items-baseline justify-between">
+                  <h3 class="font-medium text-xl">{project.data.title}</h3>
+                  <p class="text-muted-foreground text-sm">
+                    {formatDate(project.data.accomplishedAt)}
+                  </p>
+                </div>
+              </a>
+            </li>
+          );
+        })}
     </ul>
   </div>
 </BaseLayout>
