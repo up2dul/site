@@ -1,43 +1,34 @@
-import { RssIcon } from "lucide-react";
-import { GithubIcon } from "./icons";
+import { useEffect, useState } from "react";
 
 const currentYear = new Date().getFullYear();
 
 export function Footer(): React.ReactElement {
-  return (
-    <footer className="w-full border-t bg-background">
-      <div className="mx-auto flex max-w-xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-muted-foreground text-sm">&copy; {currentYear}</p>
+  const [time, setTime] = useState<string>("");
 
-        <nav aria-label="Footer">
-          <ul className="flex flex-wrap items-center gap-4 text-muted-foreground text-sm">
-            <li>
-              <a href="/llms.txt" className="link-hover">
-                llms.txt
-              </a>
-            </li>
-            <li>
-              <a
-                href="/rss.xml"
-                className="link-hover inline-flex items-center gap-1.5"
-              >
-                <RssIcon aria-hidden="true" className="size-4" />
-                RSS
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/up2dul/site"
-                target="_blank"
-                rel="noreferrer"
-                className="link-hover inline-flex items-center gap-1.5"
-              >
-                <GithubIcon className="size-4" />
-                GitHub
-              </a>
-            </li>
-          </ul>
-        </nav>
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const formatted = now.toLocaleTimeString("en-GB", {
+        timeZone: "Asia/Jakarta",
+        hour12: false,
+      });
+      setTime(`It's ${formatted} at UTC+7`);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <footer className="mx-auto w-full max-w-xl px-4 py-8">
+      <div className="flex flex-col gap-4 border-t py-8 sm:flex-row-reverse sm:items-center sm:justify-between">
+        <p className="text-muted-foreground text-sm">{time}</p>
+
+        <p className="text-muted-foreground text-sm">
+          &copy; {currentYear}, Abdul Malik
+        </p>
       </div>
     </footer>
   );
