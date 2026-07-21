@@ -378,6 +378,12 @@
     @apply relative text-foreground no-underline outline-none;
   }
 
+  .link-hover::before {
+    content: "";
+    @apply absolute bottom-0 left-0 h-px w-full opacity-50;
+    background-color: var(--muted-foreground);
+  }
+
   .link-hover::after {
     content: "";
     @apply absolute bottom-0 left-0 h-px w-full bg-current;
