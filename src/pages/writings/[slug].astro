@@ -1,9 +1,13 @@
 ---
 import { getCollection, render } from "astro:content";
 import type { GetStaticPaths } from "astro";
+import { ArrowLeftIcon } from "lucide-react";
 import BaseLayout from "@/components/layouts/base-layout.astro";
+import { LinkButton } from "@/components/link-button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { GiscusComments } from "@/components/writing/giscus-comments";
+import TableOfContents from "@/components/writing/table-of-contents.astro";
 import { formatDate } from "@/lib/date";
 import { estimateReadingMinutes, formatReadingTime } from "@/lib/reading-time";
 
@@ -16,8 +20,16 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { writing } = Astro.props;
-const { Content } = await render(writing);
+const { Content, headings } = await render(writing);
 const readingTime = formatReadingTime(estimateReadingMinutes(writing.body));
+
+const tocHeadings = headings
+  .filter((h) => h.depth === 2 || h.depth === 3)
+  .map((h) => ({
+    depth: h.depth,
+    slug: h.slug,
+    text: h.text,
+  }));
 ---
 
 <BaseLayout
@@ -25,7 +37,14 @@ const readingTime = formatReadingTime(estimateReadingMinutes(writing.body));
   description={writing.data.subtitle}
   type="article"
 >
-  <article class="space-y-8">
+  <div class="mb-8">
+    <LinkButton href="/writings" variant="outline" client:load>
+      <ArrowLeftIcon aria-hidden="true" />
+      Back to Writings
+    </LinkButton>
+  </div>
+
+  <article class="writing-article">
     <header class="space-y-4">
       <div
         class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground"
@@ -51,10 +70,61 @@ const readingTime = formatReadingTime(estimateReadingMinutes(writing.body));
 
     <Separator />
 
+    <div class="writing-mobile-toc">
+      <TableOfContents headings={tocHeadings} />
+      <Separator className="mt-8" />
+    </div>
+
     <div
       class="typeset typeset-docs space-y-4 text-pretty leading-relaxed text-foreground"
     >
       <Content />
     </div>
   </article>
+
+  <aside class="writing-toc">
+    <TableOfContents headings={tocHeadings} />
+  </aside>
+
+  <Separator className="my-8" />
+
+  <div class="writing-comments">
+    <GiscusComments client:only="react" />
+  </div>
 </BaseLayout>
+
+<style>
+.writing-article {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.writing-mobile-toc {
+  display: block;
+}
+
+.writing-toc {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .writing-mobile-toc {
+    display: none;
+  }
+
+  .writing-toc {
+    display: block;
+    position: fixed;
+    top: 5rem;
+    right: calc((100vw - 36rem) / 2 - 17.5rem);
+    width: 15.625rem;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+  }
+}
+
+.writing-comments {
+  margin-top: 2rem;
+}
+</style>

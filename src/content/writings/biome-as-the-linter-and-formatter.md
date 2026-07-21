@@ -6,7 +6,7 @@ tags:
   - tutorial
 ---
 
-# Intro
+## Intro
 
 As a software developer, our primary task is to write code, and it is not just about writing it so that the program runs well. We also need to ensure that the code we write is clean, which means we must pay attention to things such as giving variable names, removing unused code, and maintaining consistency. While a developer can manually keep the code clean, it can be difficult when there is a lot of code to write, and when we working with a team.
 
@@ -16,7 +16,7 @@ As a software developer, our primary task is to write code, and it is not just a
 
 This is where tools like code linters and formatters come in handy. As developers who use JavaScript especially, we must already know about ESLint and Prettier. Both of these are popular tools that useful in keeping our codebase clean and consistent. With **ESLint** we can trace syntax errors, logic errors, get code suggestions, etc, based on the ESLint rules that we already config. While **Prettier** is used for formatting our code which includes the semicolon usable, tab indentation, quotes usable, trailing comma, etc, it is based on our Prettier configuration as well. In the project, we can use one of them or even combine both of them.
 
-# About Biome
+## About Biome
 
 In August 2023, there was another code linter/formatter tool released, it's named Biome, so it's what we will talk about.
 
@@ -24,7 +24,7 @@ In August 2023, there was another code linter/formatter tool released, it's name
 
 > Fun fact: the first logo of Biome was looks like same with [Remix](https://remix.run) logo XD.
 
-## What is this?
+### What is this?
 
 > **Biome is a** [**fast formatter** for _JavaScript_](https://github.com/biomejs/biome/tree/main/benchmark#formatting), _TypeScript_, _JSX_, and _JSON_ that scores [**97% compatibility with _Prettier_**](https://console.algora.io/challenges/prettier), [**saving CI and developer time**.](https://console.algora.io/challenges/prettier)
 >
@@ -32,25 +32,25 @@ In August 2023, there was another code linter/formatter tool released, it's name
 
 That's two main points that I quote from the [official site](https://biomejs.dev). So basically Biome is a JavaScript/TypeScript linter and formatter same as ESLint and Prettier, yeah so Biome alone does a thing that ESLint and Prettier do, and it is built on **Rust**.
 
-## Reasons to use it
+### Reasons to use it
 
 Before trying to use it, let's get to know why we should try it, and maybe make it an ESLint and Prettier alternative for our development.
 
-### Better performance
+#### Better performance
 
 Biome has a better performance on linting and formatting code, yup, as I mentioned below, Biome is built on 🦀 Rust. And then.., I don't know how to describe this anymore tbh.
 
-### Some pre-configured rules
+#### Some pre-configured rules
 
 If you have used ESLint and Prettier before, you know there are a lot of plugins to do simple things such as TypeScript, React plugins, or import sorter from Trivago. So Biome came in already with some useful top-level config options such as some I mentioned before, which are TypeScript, React, and import sorter.
 
-### IDE/Text editor integrations
+#### IDE/Text editor integrations
 
 ![Biome extension on Visual Studio Code](https://cdn.hashnode.com/res/hashnode/image/upload/v1711565398087/3a4c5c15-e039-4142-bbc2-faac6bc36beb.png)
 
 Biome already has an official integration/plugin with Visual Studio Code and IntelliJ IDEA, and a plugin that is maintained by communities for some other editors such as Neovim, Emacs, Helix, and Sublime Text. Get to know more about this [here](https://biomejs.dev/guides/integrate-in-editor/).
 
-# Getting started
+## Getting started
 
 "Talk is cheap, show me the <s>code</s> demo", let's try to use it.
 
@@ -58,7 +58,7 @@ Biome already has an official integration/plugin with Visual Studio Code and Int
 
 Here I will use the basic React Vite app for the implementation.
 
-## Install Biome
+### Install Biome
 
 So, first of all, install the Biome itself as the development dependencies, here I will use [PNPM](https://pnpm.io) as the package manager.
 
@@ -73,7 +73,7 @@ yarn add --dev --exact @biomejs/biome
 
 > `--exact` will resolve the version of the package and add it to your `package.json` with an exact version number instead of a version range.
 
-## Init configuration file
+### Init configuration file
 
 Now create a Biome configuration file by running the init command.
 
@@ -103,7 +103,7 @@ After running that command, now we will have `biome.json` a file in our root pro
 }
 ```
 
-## Usage
+### Usage
 
 After initiating the configuration file, now we can use it. There are three main commands.
 
@@ -157,11 +157,11 @@ To make it easier, let's just add those commands into `"scripts"` in the `packag
 
 So now we just run these commands easily. Go [here](https://biomejs.dev/reference/configuration/) for the advanced configurations.
 
-# Development status
+## Development status
 
 The latest minor release of Biome came on 8 March 2024, which is version [1.6.0](https://github.com/biomejs/biome/releases/tag/cli%2Fv1.6.0). It has some changes, such as "Partial support for Astro, Svelte, and Vue files" and some new rules. So it's good news for developers who casually use Astro, Svelte, and Vue.
 
-# Conclusion
+## Conclusion
 
 Now should we use Biome and fully replace ESLint and Prettier?
 
@@ -172,7 +172,7 @@ And maybe there are other reasons to think about it.
 
 So that's it, thank you ✨.
 
-# References
+## References
 
 - [https://biomejs.dev](https://biomejs.dev/)
 - [https://youtu.be/KI7mbm-BxqA?si=h16A0ZJYntzfGzZJ](https://youtu.be/KI7mbm-BxqA?si=h16A0ZJYntzfGzZJ)
