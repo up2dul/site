@@ -1,7 +1,9 @@
 ---
 import { getCollection, render } from "astro:content";
 import type { GetStaticPaths } from "astro";
+import { ArrowLeftIcon } from "lucide-react";
 import BaseLayout from "@/components/layouts/base-layout.astro";
+import { LinkButton } from "@/components/link-button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { GiscusComments } from "@/components/writing/giscus-comments";
@@ -35,6 +37,13 @@ const tocHeadings = headings
   description={writing.data.subtitle}
   type="article"
 >
+  <div class="mb-8">
+    <LinkButton href="/writings" variant="outline" client:load>
+      <ArrowLeftIcon aria-hidden="true" />
+      Back to Writings
+    </LinkButton>
+  </div>
+
   <article class="writing-article">
     <header class="space-y-4">
       <div
