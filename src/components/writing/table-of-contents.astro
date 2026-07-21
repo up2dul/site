@@ -12,7 +12,7 @@ interface Props {
 const { headings } = Astro.props;
 ---
 
-<nav class="toc">
+<nav class="toc" aria-label="Table of Contents">
   <h2 class="toc-title">Table of Contents</h2>
   {headings.length === 0 ? (
       <p class="toc-empty">No sections</p>
@@ -86,6 +86,14 @@ const { headings } = Astro.props;
 .toc-link.active {
   color: var(--color-primary);
   font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.toc-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 </style>
 
@@ -126,9 +134,15 @@ class TableOfContents {
           window.pageYOffset -
           headerOffset;
 
+        const scrollBehavior = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches
+          ? "auto"
+          : "smooth";
+
         window.scrollTo({
           top: targetPosition,
-          behavior: "smooth",
+          behavior: scrollBehavior,
         });
 
         history.pushState(null, "", `#${targetId}`);
@@ -170,9 +184,15 @@ class TableOfContents {
             target.getBoundingClientRect().top +
             window.pageYOffset -
             headerOffset;
+          const scrollBehavior = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches
+            ? "auto"
+            : "smooth";
+
           window.scrollTo({
             top: targetPosition,
-            behavior: "smooth",
+            behavior: scrollBehavior,
           });
         }
       }
