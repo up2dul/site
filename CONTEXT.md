@@ -9,11 +9,11 @@ Abdul's public website at up2dul.dev. A personal site showcasing work, writings,
 _Avoid_: Portfolio, blog, homepage, digital garden
 
 **Writings**:
-Chronological articles published as tutorials and guides. Listed in reverse-chronological order. Filter by tag will be added when content grows.
+Chronological articles published as tutorials and guides. Listed in reverse-chronological order. Filter by tag will be added when content grows. Long-form reading experience with table of contents and comment/discussion section.
 _Avoid_: Posts, articles, blog posts, notes, garden
 
 **Projects**:
-Shipped product applications (mobile or web apps). Each has a detail page with images, technologies, and a markdown body describing the project.
+Shipped product applications (mobile or web apps). Each has a detail page with images, technologies, and a markdown body describing the project. Showcase-only presentation — no reading-enhancement features like table of contents or comments.
 _Avoid_: Portfolio items, case studies, experiments, open source
 
 **CV**:
@@ -23,3 +23,11 @@ _Avoid_: Resume, curriculum vitae
 **Now**:
 A curated snapshot of Abdul's current activities — studying, learning, working on, or reading. Updated manually when significant changes occur.
 _Avoid_: Status, updates, timeline, log
+
+**Table of Contents**:
+A sticky sidebar navigation on Writing detail pages, built at build time from the Markdown AST. Shows H2 and H3 headings with active-section tracking on scroll. Positioned outside the main content column, sticky to the viewport right side. On mobile, appears inline between the title block and the article body, always expanded. Long headings wrap to multiple lines. If no headings exist, displays "No sections". H3 headings are indented under H2s. Active heading is highlighted with colored text. Clicking a heading updates the URL hash and supports browser back/forward navigation. Scroll offset accounts for header height.
+_Avoid_: Sidebar nav, outline, anchor links
+
+**Discussion**:
+A Giscus-powered comment section at the bottom of Writing detail pages, placed outside the article element with spacing/separator. Backed by GitHub Discussions on the up2dul/site repo. Uses pathname mapping and follows the site's light/dark theme automatically via React component with theme sync.
+_Avoid_: Comments, feedback, chat
