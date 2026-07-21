@@ -1,0 +1,189 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+---
+
+<nav class="toc">
+  <h2 class="toc-title">Table of Contents</h2>
+  {headings.length === 0 ? (
+      <p class="toc-empty">No sections</p>
+    ) : (
+      <ul class="toc-list">
+        {headings.map((heading) => (
+          <li class={`toc-item toc-item-${heading.depth}`}>
+            <a href={`#${heading.slug}`} class="toc-link" data-toc-link>
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+</nav>
+
+<style>
+.toc {
+  font-family: var(--font-sans);
+}
+
+.toc-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--color-foreground);
+}
+
+.toc-empty {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+  font-style: italic;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toc-item {
+  margin: 0;
+}
+
+.toc-item-2 {
+  padding-left: 0;
+}
+
+.toc-item-3 {
+  padding-left: 1rem;
+}
+
+.toc-link {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+  text-decoration: none;
+  line-height: 1.5;
+  transition: color 0.2s ease;
+  display: block;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.toc-link:hover {
+  color: var(--color-foreground);
+}
+
+.toc-link.active {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+</style>
+
+<script>
+class TableOfContents {
+  private observer: IntersectionObserver | null = null;
+  private links: NodeListOf<HTMLAnchorElement>;
+  private headings: HTMLElement[];
+
+  constructor() {
+    this.links = document.querySelectorAll("[data-toc-link]");
+    this.headings = Array.from(this.links)
+      .map((link) => {
+        const id = link.getAttribute("href")?.slice(1);
+        return id ? document.getElementById(id) : null;
+      })
+      .filter((el): el is HTMLElement => el !== null);
+
+    this.init();
+  }
+
+  private init() {
+    if (this.headings.length === 0) return;
+
+    const headerOffset = 80;
+
+    this.links.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute("href")?.slice(1);
+        if (!targetId) return;
+
+        const target = document.getElementById(targetId);
+        if (!target) return;
+
+        const targetPosition =
+          target.getBoundingClientRect().top +
+          window.pageYOffset -
+          headerOffset;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
+
+        history.pushState(null, "", `#${targetId}`);
+      });
+    });
+
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          const link = document.querySelector(`[data-toc-link][href="#${id}"]`);
+
+          if (link) {
+            if (entry.isIntersecting) {
+              this.links.forEach((l) => {
+                l.classList.remove("active");
+              });
+              link.classList.add("active");
+            }
+          }
+        });
+      },
+      {
+        rootMargin: `-${headerOffset}px 0px -50% 0px`,
+        threshold: 0,
+      }
+    );
+
+    this.headings.forEach((heading) => {
+      this.observer!.observe(heading);
+    });
+
+    window.addEventListener("popstate", () => {
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        const target = document.getElementById(hash);
+        if (target) {
+          const targetPosition =
+            target.getBoundingClientRect().top +
+            window.pageYOffset -
+            headerOffset;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth",
+          });
+        }
+      }
+    });
+  }
+}
+
+document.addEventListener("astro:page-load", () => {
+  const toc = document.querySelector(".toc");
+  if (toc) {
+    new TableOfContents();
+  }
+});
+</script>
