@@ -52,12 +52,20 @@ const nowActivities = [
 
 const contacts = [
   { label: "Email", href: "mailto:hello@up2dul.dev" },
-  { label: "GitHub", href: "https://github.com/up2dul", username: "up2dul" },
-  { label: "𝕏 (Twitter)", href: "https://x.com/up2dul", username: "up2dul" },
+  {
+    label: "GitHub",
+    href: "https://github.com/up2dul",
+    display: "github.com/up2dul",
+  },
+  {
+    label: "𝕏 (Twitter)",
+    href: "https://x.com/up2dul",
+    display: "x.com/up2dul",
+  },
   {
     label: "LinkedIn",
     href: "https://linkedin.com/in/up2dul",
-    username: "up2dul",
+    display: "linkedin.com/in/up2dul",
   },
 ];
 ---
@@ -94,6 +102,8 @@ const contacts = [
         alt="Scenery illustration"
         class="object-cover object-bottom w-full h-full"
         loading="eager"
+        fetchpriority="high"
+        layout="full-width"
       />
     </div>
   </section>
@@ -152,7 +162,7 @@ const contacts = [
                 rel={isEmail ? undefined : "noreferrer"}
                 class="link-hover inline-flex w-fit items-center gap-1"
               >
-                {contact.username ?? contact.href.replace("mailto:", "")}
+                {contact.display ?? contact.href.replace("mailto:", "")}
                 <ArrowUpRightIcon aria-hidden="true" className="size-3.5" />
                 {!isEmail && <span class="sr-only">(opens in new tab)</span>}
               </a>
