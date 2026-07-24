@@ -51,7 +51,11 @@ const nowActivities = [
 ];
 
 const contacts = [
-  { label: "Email", href: "mailto:hello@up2dul.dev" },
+  {
+    label: "Email",
+    href: "mailto:hello@up2dul.dev",
+    display: "hello@up2dul.dev",
+  },
   {
     label: "GitHub",
     href: "https://github.com/up2dul",
@@ -162,7 +166,7 @@ const contacts = [
                 rel={isEmail ? undefined : "noreferrer"}
                 class="link-hover inline-flex w-fit items-center gap-1"
               >
-                {contact.display ?? contact.href.replace("mailto:", "")}
+                {contact.display}
                 <ArrowUpRightIcon aria-hidden="true" className="size-3.5" />
                 {!isEmail && <span class="sr-only">(opens in new tab)</span>}
               </a>
