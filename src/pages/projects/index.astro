@@ -6,6 +6,10 @@ import { formatDate } from "@/lib/date";
 import { resolveProjectImage } from "@/lib/project-images";
 
 const projects = await getCollection("projects", ({ data }) => !data.draft);
+
+const sortedProjects = projects.sort(
+  (a, b) => b.data.accomplishedAt.getTime() - a.data.accomplishedAt.getTime()
+);
 ---
 
 <BaseLayout
@@ -21,7 +25,7 @@ const projects = await getCollection("projects", ({ data }) => !data.draft);
     </section>
 
     <ul class="grid gap-8 md:grid-cols-2">
-      {projects.map((project) => {
+      {sortedProjects.map((project) => {
           const thumbnail = resolveProjectImage(project.data.images[0]);
           return (
             <li>
