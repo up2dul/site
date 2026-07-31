@@ -57,7 +57,7 @@ export function Header(): React.ReactElement {
   return (
     <header
       className={cn(
-        "sticky top-4 z-40 mx-auto mt-4 flex h-14 w-[80vw] items-center justify-end gap-4 rounded-xl bg-background/80 px-4 backdrop-blur-md transition-all duration-300 sm:justify-between",
+        "sticky top-4 z-40 mx-auto mt-4 flex h-14 w-[80vw] items-center justify-end gap-4 rounded-xl bg-background/80 px-4 backdrop-blur-md transition-[box-shadow,max-width] duration-300 ease-out sm:justify-between",
         scrolled ? "shadow-sm sm:max-w-md" : "sm:max-w-xl"
       )}
     >

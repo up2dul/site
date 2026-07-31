@@ -2,9 +2,9 @@ import { MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 import {
   Select,
-  SelectButton,
   SelectItem,
   SelectPopup,
+  SelectTrigger,
 } from "@/components/ui/select";
 import { PORTAL_ROOT_ID } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -21,7 +21,7 @@ export function ThemeSwitcher({
 }: {
   className?: string;
 }): React.ReactElement {
-  const { theme, setTheme, mounted } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [container, setContainer] = useState<HTMLElement | null>(null);
   const popupId = useId();
 
@@ -30,23 +30,32 @@ export function ThemeSwitcher({
   }, []);
 
   const active = themes.find((t) => t.value === theme) ?? themes[2];
-  const Icon = active.icon;
 
   return (
     <Select
       value={theme}
       onValueChange={(newValue) => newValue && setTheme(newValue)}
     >
-      <SelectButton
+      <SelectTrigger
         aria-label="Select theme"
         className={cn("w-auto min-w-0 gap-1.5 ps-2.5 pe-2", className)}
       >
-        {mounted ? (
-          <Icon aria-hidden="true" className="size-4" />
-        ) : (
-          <span className="size-4" />
-        )}
-      </SelectButton>
+        <span className="relative size-4">
+          {themes.map(({ value, icon: ItemIcon }) => (
+            <ItemIcon
+              key={value}
+              aria-hidden="true"
+              className={cn(
+                "absolute inset-0 size-4 transition-[opacity,scale,filter] duration-300",
+                value === active.value
+                  ? "scale-100 opacity-100 blur-0"
+                  : "scale-25 opacity-0 blur-[4px]"
+              )}
+              style={{ transitionTimingFunction: "cubic-bezier(0.2, 0, 0, 1)" }}
+            />
+          ))}
+        </span>
+      </SelectTrigger>
       <SelectPopup
         id={popupId}
         alignItemWithTrigger={false}

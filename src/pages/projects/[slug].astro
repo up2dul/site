@@ -58,7 +58,7 @@ const { Content } = await render(project);
               <img
                 src={resolveProjectImageSrc(image)}
                 alt={`${data.title} screenshot ${index + 1}`}
-                class="w-full rounded-lg border object-cover"
+                class="w-full rounded-lg object-cover outline outline-black/10 dark:outline-white/10"
                 loading={index === 0 ? "eager" : "lazy"}
               />
             </li>

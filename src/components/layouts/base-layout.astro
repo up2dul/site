@@ -123,11 +123,11 @@ const ogImage = image.startsWith("http") ? image : new URL(image, siteUrl).href;
       }
 
       ::view-transition-old(main-content) {
-        animation: fade-blur-out 0.5s ease-in-out;
+        animation: fade-blur-out 0.5s ease-out;
       }
 
       ::view-transition-new(main-content) {
-        animation: fade-blur-in 0.5s ease-in-out;
+        animation: fade-blur-in 0.5s ease-out;
       }
     }
 

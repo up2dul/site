@@ -24,7 +24,7 @@ export function Footer(): React.ReactElement {
   return (
     <footer className="mx-auto w-full max-w-xl px-4 py-8">
       <div className="flex flex-col gap-4 border-t py-8 sm:flex-row-reverse sm:items-center sm:justify-between">
-        <p className="text-muted-foreground text-sm">{time}</p>
+        <p className="text-muted-foreground text-sm tabular-nums">{time}</p>
 
         <p className="text-muted-foreground text-sm">
           &copy; {currentYear}, Abdul Malik
