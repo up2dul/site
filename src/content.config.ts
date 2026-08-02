@@ -26,4 +26,12 @@ const writings = defineCollection({
   }),
 });
 
-export const collections = { projects, writings };
+const til = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/til" }),
+  schema: z.object({
+    title: z.string(),
+    createdAt: z.coerce.date(),
+  }),
+});
+
+export const collections = { projects, writings, til };

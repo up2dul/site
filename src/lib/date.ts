@@ -1,6 +1,8 @@
 type DateInput = Date | string;
 
 interface FormatDateOptions {
+  /** Include the day in output, e.g. "August 15, 2024" instead of "August 2024". */
+  day?: boolean;
   month?: "long" | "short";
 }
 
@@ -12,12 +14,13 @@ export function formatDate(
   input: DateInput,
   options: FormatDateOptions = {}
 ): string {
-  const { month = "long" } = options;
+  const { day = false, month = "long" } = options;
   const date = toDate(input);
 
   return date.toLocaleDateString("en-US", {
     month,
     year: "numeric",
+    ...(day ? { day: "numeric" } : {}),
   });
 }
 

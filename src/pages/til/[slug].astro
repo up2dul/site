@@ -1,0 +1,55 @@
+---
+import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import { ArrowLeftIcon } from "lucide-react";
+import BaseLayout from "@/components/layouts/base-layout.astro";
+import { LinkButton } from "@/components/link-button";
+import { Separator } from "@/components/ui/separator";
+import { formatDate } from "@/lib/date";
+
+export const getStaticPaths = (async () => {
+  const entries = await getCollection("til");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+  title={`${entry.data.title} | Abdul Malik`}
+  description={`A short note about ${entry.data.title.toLowerCase()}.`}
+  type="article"
+>
+  <div class="mb-8">
+    <LinkButton href="/til" variant="outline" client:load>
+      <ArrowLeftIcon aria-hidden="true" />
+      Back to TIL
+    </LinkButton>
+  </div>
+
+  <article class="space-y-8">
+    <header class="space-y-4">
+      <time
+        datetime={entry.data.createdAt.toISOString()}
+        class="text-sm text-muted-foreground"
+      >
+        {formatDate(entry.data.createdAt, { day: true })}
+      </time>
+      <h1 class="text-2xl md:text-3xl">
+        {entry.data.title}
+      </h1>
+    </header>
+
+    <Separator />
+
+    <div
+      class="typeset typeset-docs space-y-4 text-pretty leading-relaxed text-foreground"
+    >
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

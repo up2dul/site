@@ -16,6 +16,7 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "Projects", href: "/projects" },
   { label: "Writings", href: "/writings" },
+  { label: "TIL", href: "/til" },
 ];
 
 function NavLinks({
