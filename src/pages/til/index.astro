@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/components/layouts/base-layout.astro";
+import { formatDate } from "@/lib/date";
+
+const entries = await getCollection("til");
+
+const sorted = entries.sort(
+  (a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime()
+);
+---
+
+<BaseLayout
+  title="TIL | Abdul Malik"
+  description="Short notes about things I just learned — brief discoveries and realizations."
+>
+  <div class="space-y-8">
+    <section class="space-y-2">
+      <h1 class="text-2xl md:text-3xl">TIL</h1>
+      <p class="text-muted-foreground">
+        Today I Learned (TIL): short notes about things I recently discovered or
+        understood.
+      </p>
+    </section>
+
+    {sorted.length === 0 ? (
+        <p class="text-muted-foreground">Nothing here yet — check back soon.</p>
+      ) : (
+        <ul class="space-y-6">
+          {sorted.map((entry) => (
+            <li class="grid grid-cols-1 gap-1 sm:grid-cols-[160px_1fr] sm:gap-4">
+              <span class="text-muted-foreground text-sm">
+                {formatDate(entry.data.createdAt, { day: true })}
+              </span>
+              <div class="space-y-1">
+                <h2 class="font-normal font-sans">
+                  <a
+                    href={`/til/${entry.id}`}
+                    class="link-hover inline-flex w-fit items-center"
+                  >
+                    {entry.data.title}
+                  </a>
+                </h2>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+  </div>
+</BaseLayout>
