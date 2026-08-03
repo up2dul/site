@@ -1,0 +1,32 @@
+---
+import { House } from "lucide-react";
+import BaseLayout from "@/components/layouts/base-layout.astro";
+import { LinkButton } from "@/components/link-button";
+---
+
+<BaseLayout
+  title="Page Not Found | Abdul Malik"
+  description="The page you're looking for doesn't exist."
+  noindex
+>
+  <section
+    class="flex min-h-[40vh] flex-col items-center justify-center py-8 text-center space-y-6"
+  >
+    <div class="space-y-4">
+      <h1 class="text-7xl md:text-8xl">
+        <span class="sr-only">Page not found — </span>404
+      </h1>
+      <p
+        class="mx-auto max-w-md text-pretty text-muted-foreground text-sm leading-relaxed lg:text-base"
+      >
+        🧭 Looks like you've wandered off the beaten path, the page you're
+        looking for doesn't exist or has been moved.
+      </p>
+    </div>
+
+    <LinkButton href="/" variant="outline" client:load>
+      <House aria-hidden="true" />
+      Back to Home
+    </LinkButton>
+  </section>
+</BaseLayout>
