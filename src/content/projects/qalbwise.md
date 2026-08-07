@@ -27,7 +27,7 @@ A topic-first Quran discovery app that helps users to find relevant Quranic vers
 
 ## Purpose
 
-We started this project for the Quran Foundation Hackathon 2026 with a clear theme: helping users connect more deeply with the Quran. We realized something simple: when someone is anxious, depressed, lonely, or struggling, they need support immediately, not after spending hours researching and curating verses. As Muslims, we felt responsible to build something that could help.
+We started this project for the [Quran Foundation Hackathon 2026](https://launch.provisioncapital.com/quran-hackathon) with a clear theme: helping users connect more deeply with the Quran. We realized something simple: when someone is anxious, depressed, lonely, or struggling, they need support immediately, not after spending hours researching and curating verses. As Muslims, we felt responsible to build something that could help.
 
 ## What I Did
 

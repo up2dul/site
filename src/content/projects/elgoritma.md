@@ -20,7 +20,7 @@ appLink: https://elgoritma.com
 
 ## Overview
 
-Elgoritma (PT Elgoritma Utama Indonesia) is a technology and software consulting company specializing in building scalable digital solutions and enterprise applications. As a sub-company of Luarsekolah, Elgoritma had already completed 14+ significant projects across industries.
+Elgoritma (PT Elgoritma Utama Indonesia) is a technology and software consulting company specializing in building scalable digital solutions and enterprise applications. As a sub-company of [Luarsekolah](https://luarsekolah.com/), Elgoritma had already completed 14+ significant projects across industries.
 
 ## Purpose
 
