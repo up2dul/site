@@ -16,6 +16,7 @@ technologies:
   - TypeScript
   - TanStack
   - Tailwind
+  - PWA
 accomplishedAt: 2026-05-20
 appLink: https://qalbwise.app
 repoLink: https://github.com/qalbwise/app
