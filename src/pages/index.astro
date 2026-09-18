@@ -101,12 +101,23 @@ const contacts = [
     </div>
 
     <div
-      class="mt-8 relative aspect-video w-full rounded-lg overflow-hidden outline outline-black/10 dark:outline-white/10"
+      class="scenery-image-frame relative mt-8 grid aspect-video w-full overflow-hidden rounded-lg outline outline-black/10 dark:outline-white/10"
+      data-scenery-image
+      data-loading
     >
       <Image
         src={scenery}
+        alt=""
+        aria-hidden="true"
+        width={32}
+        format="webp"
+        class="scenery-image-preview col-start-1 row-start-1 h-full w-full object-cover object-bottom"
+        loading="eager"
+      />
+      <Image
+        src={scenery}
         alt="Scenery illustration"
-        class="object-cover object-bottom w-full h-full"
+        class="scenery-image-full col-start-1 row-start-1 h-full w-full object-cover object-bottom"
         loading="eager"
         fetchpriority="high"
         layout="full-width"
@@ -177,4 +188,72 @@ const contacts = [
         })}
     </ul>
   </section>
+
+  <noscript>
+    <style is:inline>
+    [data-scenery-image] .scenery-image-preview {
+      display: none;
+    }
+    [data-scenery-image] .scenery-image-full {
+      filter: none;
+      opacity: 1;
+    }
+    </style>
+  </noscript>
 </BaseLayout>
+
+<style>
+.scenery-image-preview,
+.scenery-image-full {
+  transition:
+    filter 200ms ease-out,
+    opacity 200ms ease-out;
+}
+
+.scenery-image-preview {
+  filter: blur(12px);
+  transform: scale(1.04);
+}
+
+.scenery-image-full {
+  filter: none;
+  opacity: 1;
+}
+
+.scenery-image-frame[data-loading] .scenery-image-preview {
+  opacity: 1;
+}
+
+.scenery-image-frame[data-loading] .scenery-image-full {
+  filter: blur(8px);
+  opacity: 0;
+}
+
+.scenery-image-frame:not([data-loading]) .scenery-image-preview {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scenery-image-preview,
+  .scenery-image-full {
+    transition: none;
+  }
+}
+</style>
+
+<script is:inline data-astro-rerun>
+(() => {
+  const frame = document.querySelector("[data-scenery-image]");
+  const image = frame?.querySelector(".scenery-image-full");
+
+  if (frame && image instanceof HTMLImageElement) {
+    const reveal = () => frame.removeAttribute("data-loading");
+
+    if (image.complete && image.naturalWidth > 0) {
+      reveal();
+    } else {
+      image.addEventListener("load", reveal, { once: true });
+    }
+  }
+})();
+</script>

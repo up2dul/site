@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import { ArrowLeftIcon, ExternalLinkIcon } from "lucide-react";
@@ -8,7 +9,7 @@ import { LinkButton } from "@/components/link-button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { formatDate } from "@/lib/date";
-import { resolveProjectImageSrc } from "@/lib/project-images";
+import { resolveProjectImage } from "@/lib/project-images";
 
 export const getStaticPaths = (async () => {
   const projects = await getCollection("projects", ({ data }) => !data.draft);
@@ -53,16 +54,37 @@ const { Content } = await render(project);
 
     <section class="space-y-3">
       <ul class="grid gap-4 sm:grid-cols-2">
-        {data.images.map((image, index) => (
-            <li class={index === 0 ? "sm:col-span-2" : ""}>
-              <img
-                src={resolveProjectImageSrc(image)}
-                alt={`${data.title} screenshot ${index + 1}`}
-                class="w-full rounded-lg object-cover outline outline-black/10 dark:outline-white/10"
-                loading={index === 0 ? "eager" : "lazy"}
-              />
-            </li>
-          ))}
+        {data.images.map((image, index) => {
+          const projectImage = resolveProjectImage(image);
+
+          return (
+            projectImage && (
+              <li class={index === 0 ? "sm:col-span-2" : ""}>
+                <div
+                  class="project-image-frame grid overflow-hidden rounded-lg outline outline-black/10 dark:outline-white/10"
+                  data-project-image
+                  data-loading
+                >
+                  <Image
+                    src={projectImage}
+                    alt=""
+                    aria-hidden="true"
+                    width={32}
+                    format="webp"
+                    class="project-image-preview col-start-1 row-start-1 h-auto w-full object-cover"
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                  <Image
+                    src={projectImage}
+                    alt={`${data.title} screenshot ${index + 1}`}
+                    class="project-image-full col-start-1 row-start-1 h-auto w-full object-cover"
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                </div>
+              </li>
+            )
+          );
+        })}
       </ul>
     </section>
 
@@ -100,4 +122,70 @@ const { Content } = await render(project);
       <Content />
     </div>
   </article>
+
+  <noscript>
+    <style is:inline>
+    [data-project-image] .project-image-preview {
+      display: none;
+    }
+    [data-project-image] .project-image-full {
+      filter: none;
+      opacity: 1;
+    }
+    </style>
+  </noscript>
 </BaseLayout>
+
+<style>
+.project-image-preview,
+.project-image-full {
+  transition:
+    filter 200ms ease-out,
+    opacity 200ms ease-out;
+}
+
+.project-image-preview {
+  filter: blur(12px);
+  transform: scale(1.04);
+}
+
+.project-image-full {
+  filter: none;
+  opacity: 1;
+}
+
+.project-image-frame[data-loading] .project-image-preview {
+  opacity: 1;
+}
+
+.project-image-frame[data-loading] .project-image-full {
+  filter: blur(8px);
+  opacity: 0;
+}
+
+.project-image-frame:not([data-loading]) .project-image-preview {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-image-preview,
+  .project-image-full {
+    transition: none;
+  }
+}
+</style>
+
+<script is:inline data-astro-rerun>
+for (const frame of document.querySelectorAll("[data-project-image]")) {
+  const image = frame.querySelector(".project-image-full");
+  if (!(image instanceof HTMLImageElement)) continue;
+
+  const reveal = () => frame.removeAttribute("data-loading");
+
+  if (image.complete && image.naturalWidth > 0) {
+    reveal();
+  } else {
+    image.addEventListener("load", reveal, { once: true });
+  }
+}
+</script>
