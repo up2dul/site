@@ -1,4 +1,4 @@
-name: 🌎 Build and Deploy to Cloudflare Pages
+name: 🌎 Build and Deploy to Cloudflare Workers
 on:
   push:
     branches:
@@ -31,18 +31,9 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Build web
         run: pnpm build
-      # Deploy
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          projectName: 'site'
-          directory: 'dist'
-          # Optional: Enable this if you want to have GitHub Deployments triggered
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          # Optional: Switch what branch you are deploying to.
-          # By default this will be the branch which triggered this workflow
-          branch: main
-          # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
-          wranglerVersion: '3'
+          command: deploy
