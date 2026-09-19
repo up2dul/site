@@ -4,6 +4,7 @@ import { getCollection, render } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import { ArrowLeftIcon, ExternalLinkIcon } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
+import { ImageLightbox } from "@/components/image-lightbox";
 import BaseLayout from "@/components/layouts/base-layout.astro";
 import { LinkButton } from "@/components/link-button";
 import { Badge } from "@/components/ui/badge";
@@ -60,10 +61,12 @@ const { Content } = await render(project);
           return (
             projectImage && (
               <li class={index === 0 ? "sm:col-span-2" : ""}>
-                <div
+                <a
                   class="project-image-frame grid overflow-hidden rounded-lg outline outline-black/10 dark:outline-white/10"
                   data-project-image
+                  data-lightbox-trigger
                   data-loading
+                  href={projectImage.src}
                 >
                   <Image
                     src={projectImage}
@@ -80,7 +83,7 @@ const { Content } = await render(project);
                     class="project-image-full col-start-1 row-start-1 h-auto w-full object-cover"
                     loading={index === 0 ? "eager" : "lazy"}
                   />
-                </div>
+                </a>
               </li>
             )
           );
@@ -122,6 +125,8 @@ const { Content } = await render(project);
       <Content />
     </div>
   </article>
+
+  <ImageLightbox client:load />
 
   <noscript>
     <style is:inline>

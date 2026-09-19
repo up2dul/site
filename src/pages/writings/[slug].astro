@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import { ArrowLeftIcon } from "lucide-react";
+import { ImageLightbox } from "@/components/image-lightbox";
 import BaseLayout from "@/components/layouts/base-layout.astro";
 import { LinkButton } from "@/components/link-button";
 import { Badge } from "@/components/ui/badge";
@@ -91,6 +92,8 @@ const tocHeadings = headings
   <div class="writing-comments">
     <GiscusComments client:only="react" />
   </div>
+
+  <ImageLightbox client:load />
 </BaseLayout>
 
 <style>

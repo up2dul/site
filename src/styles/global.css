@@ -365,6 +365,22 @@
 }
 
 @layer components {
+  [data-lightbox-trigger] {
+    cursor: zoom-in;
+    outline: none;
+  }
+
+  [data-lightbox-trigger]:hover {
+    filter: brightness(0.94);
+  }
+
+  [data-lightbox-trigger]:focus-visible {
+    border-radius: var(--radius);
+    box-shadow:
+      0 0 0 2px var(--background),
+      0 0 0 4px var(--ring);
+  }
+
   .typeset-docs {
     --typeset-font-body: var(--font-sans);
     --typeset-font-heading: var(--font-heading);

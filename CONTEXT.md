@@ -36,6 +36,10 @@ _Avoid_: Notes, snippets, quick posts, micro-blog
 A Giscus-powered comment section at the bottom of Writing detail pages, placed outside the article element with spacing/separator. Backed by GitHub Discussions on the up2dul/site repo. Uses pathname mapping and follows the site's light/dark theme automatically via React component with theme sync.
 _Avoid_: Comments, feedback, chat
 
+**Image Lightbox**:
+A reusable full-screen image viewer for detail pages that opt in. It keeps visitors in context while they inspect an image and move through the page's image gallery.
+_Avoid_: Image modal, photo viewer, image popup
+
 **Not Found page**:
 A page shown when a visitor lands on a URL that doesn't exist on the site. Displays a "404" status heading with guidance and links back to Home, Writings, and Projects. Served by Cloudflare Pages from the top-level `404.html` file.
 _Avoid_: 404 page, error page, missing page
