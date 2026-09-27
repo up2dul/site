@@ -40,13 +40,28 @@ const experiences = [
 
 const nowActivities = [
   {
-    label: "Studying",
-    detail: "Pursuing a bachelor's degree in Informatics",
-    link: { text: "Telkom University", href: "https://telkomuniversity.ac.id" },
+    detail: [
+      { text: "Pursuing a bachelor's degree in Informatics at ", href: null },
+      {
+        text: "Telkom University",
+        href: "https://telkomuniversity.ac.id",
+      },
+    ],
   },
   {
-    label: "Opportunity",
-    detail: "Available for new full-time or part-time opportunities",
+    detail: [
+      { text: "Grinding on ", href: null },
+      { text: "Boot.dev", href: "https://www.boot.dev" },
+      { text: " about DevOps and backend things", href: null },
+    ],
+  },
+  {
+    detail: [
+      {
+        text: "Available for new full-time or part-time opportunities 👀",
+        href: null,
+      },
+    ],
   },
 ];
 
@@ -82,7 +97,7 @@ const contacts = [
       <h1 class="text-xl md:text-2xl">Abdul Malik</h1>
       <p class="text-muted-foreground">Frontend Engineer</p>
     </div>
-    <p class="leading-relaxed text-muted-foreground text-sm lg:text-base">
+    <p class="leading-relaxed text-muted-foreground text-sm md:text-base">
       I'm a frontend engineer based in Indonesia with over 3 years of
       experience. I craft pleasant, performant, and accessible web products with
       intention, thinking about both user experience and code that's
@@ -159,7 +174,26 @@ const contacts = [
   <section class="space-y-6">
     <h2 class="text-xl">Now</h2>
     <ul class="space-y-3 list-disc list-inside">
-      {nowActivities.map((activity) => <li>{activity.detail}</li>)}
+      {nowActivities.map((activity) => (
+          <li>
+            {activity.detail.map((segment) =>
+              segment.href ? (
+                <a
+                  href={segment.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="link-hover inline-flex w-fit items-center gap-1"
+                >
+                  {segment.text}
+                  <ArrowUpRightIcon aria-hidden="true" className="size-3.5" />
+                  <span class="sr-only">(opens in new tab)</span>
+                </a>
+              ) : (
+                segment.text
+              ),
+            )}
+          </li>
+        ))}
     </ul>
   </section>
 
