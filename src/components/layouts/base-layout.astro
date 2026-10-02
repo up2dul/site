@@ -90,6 +90,12 @@ const ogImage = image.startsWith("http") ? image : new URL(image, siteUrl).href;
     </script>
 
     <ClientRouter />
+    <script>
+    import { setupCodeCopy } from "@/lib/code-copy";
+
+    setupCodeCopy();
+    document.addEventListener("astro:page-load", () => setupCodeCopy());
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
